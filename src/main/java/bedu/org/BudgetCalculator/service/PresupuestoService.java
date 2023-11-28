@@ -26,7 +26,7 @@ public class PresupuestoService {
         return data;
     }
     private Presupuesto toModel(PresupuestoDTO dto){
-        return new Presupuesto(dto.getId(),dto.getNombre(),dto.getConcepto(),
+        return new Presupuesto(dto.getId(),dto.getNombre(),dto.getConceptoId(),
                 dto.getTotal(), dto.getFecha_creacion(),
                 dto.getFecha_inicio(),dto.getFecha_fin(),dto.getEstado(),
                 dto.isActivo(),dto.isGenerado(),dto.isAceptado());
@@ -34,7 +34,7 @@ public class PresupuestoService {
     }
     private PresupuestoDTO toDTO(Presupuesto model){
         return new PresupuestoDTO(model.getId(),model.getNombre(),
-                model.getConcepto(), model.getTotal(), model.getFecha_creacion(),
+                model.getConceptoId(), model.getTotal(), model.getFecha_creacion(),
                 model.getFecha_inicio(),model.getFecha_fin(),model.getEstado(),
                 model.isActivo(),model.isGenerado(),model.isAceptado());
     }
@@ -44,8 +44,8 @@ public class PresupuestoService {
         return toDTO(presupuestoRepository.save(model));
     }
     private Presupuesto toModel(CreatePresupuestoDTO dto){
-        final LocalDate fecha = LocalDate.parse("01-01-2000");
-        return  new Presupuesto(0,dto.getNombre(),dto.getConcepto(),
+        final LocalDate fecha = LocalDate.parse("2000-01-01");
+        return  new Presupuesto(0,dto.getNombre(),dto.getConceptoId(),
                 dto.getTotal(), dto.getFecha_creacion(),
                 dto.getFecha_inicio(),fecha,dto.getEstado(),
                 true,false,false);
