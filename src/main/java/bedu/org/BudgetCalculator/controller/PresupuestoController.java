@@ -10,10 +10,11 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @Slf4j
-@RequestMapping("/presupuestos")
+@RequestMapping("presupuestos")
 public class PresupuestoController {
 
     @Autowired
@@ -22,8 +23,12 @@ public class PresupuestoController {
 
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
-    public List<PresupuestoDTO> getAll(){
-        return presupuestoService.getAll() ;
+    public List<PresupuestoDTO> findAll(){
+        return presupuestoService.findAll() ;
+    }
+    @GetMapping("{id}")
+    public Optional<PresupuestoDTO> findById(@PathVariable Long id){
+        return presupuestoService.findById(id);
     }
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
