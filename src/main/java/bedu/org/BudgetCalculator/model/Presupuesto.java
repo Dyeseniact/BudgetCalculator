@@ -17,13 +17,14 @@ public class Presupuesto {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    @Column(name = "nombre_presupuesto")
+    @Column(name = "nombre_presupuesto", nullable = false)
     private String nombre;
-
-   /* private List<Concepto> concepto; //Debe llenarse con model de concepto
+/*
+    @OneToMany
     @Column(name = "conceptos")
-    private List<Long> conceptoId;
-    */
+    private List<Concepto> concepto; //Debe llenarse con model de concepto
+   // private List<Long> conceptoId;
+*/
     @Column(nullable = false)
     private double total;
     @Column(nullable = false)
@@ -35,9 +36,9 @@ public class Presupuesto {
     @Column(nullable = false)
     private Estatus estado; // llenarse con un model de estados
 
-    private boolean isActivo;
-    private boolean isGenerado;
-    private boolean isAceptado;
+    private boolean Activo;
+    private boolean Generado;
+    private boolean Aceptado;
 
 
 
