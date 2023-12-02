@@ -19,9 +19,9 @@ public class PresupuestoDTO {
     private LocalDate fecha_inicio;
     private LocalDate fecha_fin;
     private Estatus estado; // llenarse con un model de estados
-    private boolean Activo;
-    private boolean Generado;
-    private boolean Aceptado;
+    private boolean isActivo;
+    private boolean isGenerado;
+    private boolean isAceptado;
 
 
 }

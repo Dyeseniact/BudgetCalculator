@@ -41,11 +41,11 @@ public class CreatePresupuestoDTO {
     private Estatus estado; // llenarse con un model de estados
 
 
-    private boolean Activo;
+    private boolean isActivo;
 
-    private boolean Generado;
+    private boolean isGenerado;
 
-    private boolean Aceptado;
+    private boolean isAceptado;
 
 
 

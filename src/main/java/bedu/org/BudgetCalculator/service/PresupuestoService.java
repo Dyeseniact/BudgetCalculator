@@ -2,7 +2,6 @@ package bedu.org.BudgetCalculator.service;
 
 import bedu.org.BudgetCalculator.dto.Presupuesto.CreatePresupuestoDTO;
 import bedu.org.BudgetCalculator.dto.Presupuesto.PresupuestoDTO;
-import bedu.org.BudgetCalculator.dto.Presupuesto.UpdatePresupuestoDTO;
 import bedu.org.BudgetCalculator.mappers.Presupuesto.PresupuestoMapper;
 import bedu.org.BudgetCalculator.model.Presupuesto;
 import bedu.org.BudgetCalculator.repository.PresupuestoRepository;
@@ -44,14 +43,6 @@ public class PresupuestoService {
                 .save(presupuestoMapper.toModel(data));
         return presupuestoMapper.toDTO(entity);
     }
-    public void deleteById(Long id){
-        presupuestoRepository.deleteById(id);
-    }
 
-    public PresupuestoDTO save(UpdatePresupuestoDTO data){
-        Presupuesto entity = presupuestoRepository
-                .save(presupuestoMapper.toModel(data));
-        return presupuestoMapper.toDTO(entity);
-    }
 
 }

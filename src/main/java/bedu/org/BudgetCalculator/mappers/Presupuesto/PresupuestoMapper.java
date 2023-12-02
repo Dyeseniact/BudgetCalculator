@@ -2,7 +2,6 @@ package bedu.org.BudgetCalculator.mappers.Presupuesto;
 
 import bedu.org.BudgetCalculator.dto.Presupuesto.CreatePresupuestoDTO;
 import bedu.org.BudgetCalculator.dto.Presupuesto.PresupuestoDTO;
-import bedu.org.BudgetCalculator.dto.Presupuesto.UpdatePresupuestoDTO;
 import bedu.org.BudgetCalculator.model.Presupuesto;
 import org.mapstruct.InjectionStrategy;
 import org.mapstruct.Mapper;
@@ -14,9 +13,6 @@ public interface PresupuestoMapper {
 
     @Mapping(target = "id",ignore = true)
     Presupuesto toModel(CreatePresupuestoDTO DTO);
-
-    //@Mapping(target = "fecha_creacion",ignore = true)
-    Presupuesto toModel(UpdatePresupuestoDTO dto);
 
 
 }
