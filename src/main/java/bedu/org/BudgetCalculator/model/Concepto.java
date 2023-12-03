@@ -18,6 +18,7 @@ public class Concepto {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     @ManyToOne
+   // @JoinColumn(name = "presupuesto_fk", referencedColumnName = "id")
     private Presupuesto presupuestoId;
     /*
     @ManyToMany

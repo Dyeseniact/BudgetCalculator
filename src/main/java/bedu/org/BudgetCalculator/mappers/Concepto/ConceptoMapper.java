@@ -14,6 +14,5 @@ public interface ConceptoMapper {
     @Mapping(target = "id", ignore = true)
     Concepto toModel(CreateConceptoDTO DTO);
 
-    Concepto toModel(UpdateConceptoDTO dto);
 
 }

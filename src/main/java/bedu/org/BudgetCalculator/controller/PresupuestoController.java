@@ -40,11 +40,11 @@ public class PresupuestoController {
     }
     @PatchMapping("{id}")
     @ResponseStatus(HttpStatus.CREATED)
-    public PresupuestoDTO update(@PathVariable Long id, @Valid @RequestBody UpdatePresupuestoDTO data){
+    public PresupuestoDTO update(@PathVariable Long id, @Valid @RequestBody CreatePresupuestoDTO data){
         log.info("Actualziando presupuesto");
         log.info(data.toString());
-        data.setId(id);
-        return presupuestoService.save(data) ;
+        //data.setId(id);
+        return presupuestoService.save(id, data) ;
     }
 
     @DeleteMapping("{id}")

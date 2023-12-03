@@ -15,8 +15,6 @@ public interface PresupuestoMapper {
     @Mapping(target = "id",ignore = true)
     Presupuesto toModel(CreatePresupuestoDTO DTO);
 
-    //@Mapping(target = "fecha_creacion",ignore = true)
-    Presupuesto toModel(UpdatePresupuestoDTO dto);
 
 
 }

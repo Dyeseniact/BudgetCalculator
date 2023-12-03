@@ -45,13 +45,27 @@ public class PresupuestoService {
         return presupuestoMapper.toDTO(entity);
     }
     public void deleteById(Long id){
-        presupuestoRepository.deleteById(id);
+
+        Presupuesto existePresupuesto = presupuestoRepository.findById(id)
+                .orElseThrow(()->new RuntimeException("Presupuesto no encontrado con ID: " + id)) ;
+        presupuestoRepository.delete(existePresupuesto);
     }
 
-    public PresupuestoDTO save(UpdatePresupuestoDTO data){
-        Presupuesto entity = presupuestoRepository
-                .save(presupuestoMapper.toModel(data));
-        return presupuestoMapper.toDTO(entity);
+    public PresupuestoDTO save(Long id, CreatePresupuestoDTO data){
+        Presupuesto existePresupuesto = presupuestoRepository.findById(id)
+                .orElseThrow(()->new RuntimeException("Presupuesto no encontrado con ID: " + id)) ;
+        existePresupuesto.setNombre(data.getNombre());
+        existePresupuesto.setTotal(data.getTotal());
+        existePresupuesto.setFecha_creacion(data.getFecha_creacion());
+        existePresupuesto.setFecha_inicio(data.getFecha_inicio());
+        existePresupuesto.setFecha_fin(data.getFecha_fin());
+        existePresupuesto.setEstado(data.getEstado());
+        existePresupuesto.setActivo(data.isActivo());
+        existePresupuesto.setGenerado(data.isGenerado());
+        existePresupuesto.setAceptado(data.isAceptado());
+
+        Presupuesto updatedPresupuesto = presupuestoRepository.save(existePresupuesto);
+        return presupuestoMapper.toDTO(updatedPresupuesto);
     }
 
 }

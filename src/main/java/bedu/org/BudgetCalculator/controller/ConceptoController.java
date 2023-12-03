@@ -40,15 +40,16 @@ public class ConceptoController {
     }
 
     @PatchMapping("{id}")
-    @ResponseStatus(HttpStatus.ACCEPTED)
-    public ConceptoDTO save(@PathVariable Long id,@Valid @RequestBody UpdateConceptoDTO data){
-        data.setId(id);
+    @ResponseStatus(HttpStatus.CREATED)
+    public ConceptoDTO save(@PathVariable Long id,@Valid @RequestBody CreateConceptoDTO data){
+        //data.setId(id);
         log.info("Actualizando concepto");
         log.info(data.toString());
-        return conceptoService.save(data);
+        return conceptoService.save(id,data);
     }
 
     @DeleteMapping("{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
     public void deleteById(@PathVariable Long id){
         conceptoService.deleteById(id);
     }

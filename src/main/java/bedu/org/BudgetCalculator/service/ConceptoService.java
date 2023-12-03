@@ -41,14 +41,30 @@ public class ConceptoService {
                 .save(conceptoMapper.toModel(data));
         return conceptoMapper.toDTO(entity)       ;
     }
-    public ConceptoDTO save(UpdateConceptoDTO data){
-
+    public ConceptoDTO save(Long id,CreateConceptoDTO data){
+/*
         Concepto entity = conceptoRepository
                             .save(conceptoMapper.toModel(data));
         return conceptoMapper.toDTO(entity);
+*/
+        Concepto existeConcepto = conceptoRepository.findById(id).orElseThrow(() -> new RuntimeException("Concepto no encontrado con ID: " + id));
+        existeConcepto.setConcepto(data.getConcepto());
+        existeConcepto.setCantidad(data.getCantidad());
+        existeConcepto.setPrecioUnit(data.getPrecioUnit());
+        existeConcepto.setSubtotal(data.getSubtotal());
+        existeConcepto.setFecha_inicio(data.getFecha_inicio());
+        existeConcepto.setFecha_fin(data.getFecha_fin());
+
+        // Actualizar el Concepto en la base de datos
+        Concepto updatedConcepto = conceptoRepository.save(existeConcepto);
+
+        return conceptoMapper.toDTO(updatedConcepto);
     }
 
     public void deleteById(Long id){
-        conceptoRepository.deleteById(id);
+        Concepto existeConcepto = conceptoRepository.findById(id)
+                .orElseThrow(()->new RuntimeException("Concepto no encontrado con ID: "+id));
+
+        conceptoRepository.deleteById(existeConcepto.getId());
     }
 }
