@@ -2,7 +2,6 @@ package bedu.org.BudgetCalculator.controller;
 
 import bedu.org.BudgetCalculator.dto.Presupuesto.CreatePresupuestoDTO;
 import bedu.org.BudgetCalculator.dto.Presupuesto.PresupuestoDTO;
-import bedu.org.BudgetCalculator.dto.Presupuesto.UpdatePresupuestoDTO;
 import bedu.org.BudgetCalculator.service.PresupuestoService;
 import jakarta.validation.Valid;
 import lombok.extern.slf4j.Slf4j;

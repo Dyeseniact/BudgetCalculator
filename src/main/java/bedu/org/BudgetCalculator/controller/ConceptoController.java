@@ -2,7 +2,6 @@ package bedu.org.BudgetCalculator.controller;
 
 import bedu.org.BudgetCalculator.dto.Concepto.ConceptoDTO;
 import bedu.org.BudgetCalculator.dto.Concepto.CreateConceptoDTO;
-import bedu.org.BudgetCalculator.dto.Concepto.UpdateConceptoDTO;
 import bedu.org.BudgetCalculator.service.ConceptoService;
 import jakarta.validation.Valid;
 import lombok.extern.slf4j.Slf4j;

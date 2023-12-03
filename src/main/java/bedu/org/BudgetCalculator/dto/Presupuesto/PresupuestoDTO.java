@@ -1,14 +1,10 @@
 package bedu.org.BudgetCalculator.dto.Presupuesto;
 
-import bedu.org.BudgetCalculator.model.Concepto;
 import bedu.org.BudgetCalculator.model.Estatus;
-import jakarta.persistence.Column;
-import lombok.AllArgsConstructor;
 import lombok.Data;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.util.List;
 @Data
 public class PresupuestoDTO {
     private long id;

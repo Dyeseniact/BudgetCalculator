@@ -2,7 +2,6 @@ package bedu.org.BudgetCalculator.service;
 
 import bedu.org.BudgetCalculator.dto.Concepto.ConceptoDTO;
 import bedu.org.BudgetCalculator.dto.Concepto.CreateConceptoDTO;
-import bedu.org.BudgetCalculator.dto.Concepto.UpdateConceptoDTO;
 import bedu.org.BudgetCalculator.mappers.Concepto.ConceptoMapper;
 import bedu.org.BudgetCalculator.model.Concepto;
 import bedu.org.BudgetCalculator.repository.ConceptoRepository;

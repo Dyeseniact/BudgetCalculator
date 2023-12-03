@@ -4,7 +4,6 @@ package bedu.org.BudgetCalculator.dto.Presupuesto;
 import bedu.org.BudgetCalculator.model.Estatus;
 import jakarta.validation.constraints.*;
 import lombok.Data;
-import org.springframework.format.annotation.DateTimeFormat;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
