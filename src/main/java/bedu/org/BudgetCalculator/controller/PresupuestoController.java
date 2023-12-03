@@ -2,7 +2,6 @@ package bedu.org.BudgetCalculator.controller;
 
 import bedu.org.BudgetCalculator.dto.Presupuesto.CreatePresupuestoDTO;
 import bedu.org.BudgetCalculator.dto.Presupuesto.PresupuestoDTO;
-import bedu.org.BudgetCalculator.dto.Presupuesto.UpdatePresupuestoDTO;
 import bedu.org.BudgetCalculator.service.PresupuestoService;
 import jakarta.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
@@ -38,20 +37,5 @@ public class PresupuestoController {
         log.info(data.toString());
         return presupuestoService.save(data);
     }
-    @PatchMapping("{id}")
-    @ResponseStatus(HttpStatus.CREATED)
-    public PresupuestoDTO update(@PathVariable Long id, @Valid @RequestBody CreatePresupuestoDTO data){
-        log.info("Actualziando presupuesto");
-        log.info(data.toString());
-        //data.setId(id);
-        return presupuestoService.save(id, data) ;
-    }
-
-    @DeleteMapping("{id}")
-    @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void delete(@PathVariable Long id){
-        presupuestoService.deleteById(id);
-    }
-
 
 }
