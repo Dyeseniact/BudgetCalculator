@@ -30,6 +30,10 @@ public class ClienteService {
         return mapper.toDTO(entity);
     }
 
+    /*
+    * Para el caso de actualizar cliente creo que vendría bien un nuevo DTO, porque al usar
+    * el de creación ambos valores son obligatorios cuando deberían ser opcionales.
+    */
     public ClienteDTO update(Long id, CreateClienteDTO data) {
         // Verificar si el cliente con el ID proporcionado existe
         Cliente existingCliente = repository.findById(id).orElseThrow(() -> new RuntimeException("Cliente no encontrado con ID: " + id));
