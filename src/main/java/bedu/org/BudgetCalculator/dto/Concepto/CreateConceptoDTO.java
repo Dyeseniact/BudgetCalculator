@@ -1,5 +1,6 @@
 package bedu.org.BudgetCalculator.dto.Concepto;
 
+import bedu.org.BudgetCalculator.model.Activity;
 import bedu.org.BudgetCalculator.model.Presupuesto;
 import jakarta.validation.constraints.DecimalMin;
 import jakarta.validation.constraints.NotBlank;
@@ -12,18 +13,18 @@ import java.time.LocalDate;
 public class CreateConceptoDTO {
     @NotNull
     private Presupuesto presupuestoId;
-    /*
 
-    private Long actividadId;
 
+    private Activity activityId;
+/*
     private Long productoId ;
 */
     @NotBlank
-    private String concepto; //Debe llenarse con model de actividad
-    @DecimalMin(value = "0.01", message = "La cantidad minima es 0.01")
+    private String description; //Debe llenarse con model de actividad
+    @DecimalMin(value = "0.01", message = "La cantidad minima bebe ser 0.01")
     private double cantidad;
 
-    @DecimalMin(value = "0.01", message = "El precio inimo debe ser 0.01")
+    @DecimalMin(value = "0.01", message = "El precio minimo debe ser 0.01")
     private double precioUnit;
 
     //@PositiveOrZero(message = "El subtotal debe ser mayor o igual a 0")

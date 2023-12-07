@@ -18,16 +18,20 @@ public class Concepto {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     @ManyToOne
-   // @JoinColumn(name = "presupuesto_fk", referencedColumnName = "id")
+    @JoinColumn(name = "presupuesto_id", referencedColumnName = "id", nullable = false)
     private Presupuesto presupuestoId;
-    /*
-    @ManyToMany
-    private Long actividadId;
-    @ManyToMany
+
+    @ManyToOne
+    @JoinColumn(name = "activity_id", referencedColumnName = "id")
+    private Activity activityId;
+
+/*    @ManyToMany
+    @JoinColumn(name = "presupuesto_fk", referencedColumnName = "id")
     private Long productoId ;
 */
-    @Column(nullable = false)
-    private String concepto; //Debe llenarse con model de actividad
+
+    @Column(name = "descripcion",nullable = false)
+    private String description;
     @Column(nullable = false)
     private double cantidad;
 

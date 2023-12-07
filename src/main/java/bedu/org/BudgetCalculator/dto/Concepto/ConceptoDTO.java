@@ -1,5 +1,6 @@
 package bedu.org.BudgetCalculator.dto.Concepto;
 
+import bedu.org.BudgetCalculator.model.Activity;
 import bedu.org.BudgetCalculator.model.Presupuesto;
 import lombok.Data;
 
@@ -10,14 +11,14 @@ public class ConceptoDTO {
     private long id;
 
     private Presupuesto presupuestoId;
-    /*
 
-    private Long actividadId;
 
+    private Activity activityId;
+/*
     private Long productoId ;
 */
 
-    private String concepto; //Debe llenarse con model de actividad
+    private String description;
 
     private double cantidad;
 

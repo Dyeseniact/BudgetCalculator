@@ -2,7 +2,7 @@ package bedu.org.BudgetCalculator.service;
 
 import bedu.org.BudgetCalculator.dto.Presupuesto.CreatePresupuestoDTO;
 import bedu.org.BudgetCalculator.dto.Presupuesto.PresupuestoDTO;
-import bedu.org.BudgetCalculator.mappers.Presupuesto.PresupuestoMapper;
+import bedu.org.BudgetCalculator.mappers.PresupuestoMapper;
 import bedu.org.BudgetCalculator.model.Presupuesto;
 import bedu.org.BudgetCalculator.repository.PresupuestoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -52,6 +52,7 @@ public class PresupuestoService {
         Presupuesto existePresupuesto = presupuestoRepository.findById(id)
                 .orElseThrow(()->new RuntimeException("Presupuesto no encontrado con ID: " + id)) ;
         existePresupuesto.setNombre(data.getNombre());
+        existePresupuesto.setClienteid(data.getClienteid());
         existePresupuesto.setTotal(data.getTotal());
         existePresupuesto.setFecha_creacion(data.getFecha_creacion());
         existePresupuesto.setFecha_inicio(data.getFecha_inicio());

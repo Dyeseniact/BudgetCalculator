@@ -1,4 +1,4 @@
-package bedu.org.BudgetCalculator.mappers.Presupuesto;
+package bedu.org.BudgetCalculator.mappers;
 
 import bedu.org.BudgetCalculator.dto.Presupuesto.CreatePresupuestoDTO;
 import bedu.org.BudgetCalculator.dto.Presupuesto.PresupuestoDTO;
