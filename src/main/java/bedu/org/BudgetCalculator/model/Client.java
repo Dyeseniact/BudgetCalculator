@@ -14,17 +14,17 @@ import lombok.ToString;
 @Setter
 @ToString
 @Entity
-@Table(name = "Clients")
+@Table(name = "clients")
 public class Client {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
     @Column(nullable = false, length = 50)
     private String name;
 
-    @Column(nullable = false, length = 50)
+    @Column(nullable = false, length = 50, name = "last_name")
     private String lastname;
 
     @Column(nullable = false)
