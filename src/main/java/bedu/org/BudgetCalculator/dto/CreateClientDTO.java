@@ -6,17 +6,17 @@ import jakarta.validation.constraints.Pattern;
 import lombok.Data;
 
 @Data
-public class CreateClienteDTO {
-    
+public class CreateClientDTO {
+
     @NotBlank
     private String name;
 
     @NotBlank
-    private String apellido;
+    private String lastname;
 
     @NotBlank
-    @Pattern(regexp = "\\d{10}", message = "El número de teléfono debe tener 10 dígitos")
-    private String telefono;
+    @Pattern(regexp = "\\d{10}", message = "The phone must be 10 digits long")
+    private String phone;
 
     @NotBlank
     @Email

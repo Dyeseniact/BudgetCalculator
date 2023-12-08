@@ -14,33 +14,33 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
-import bedu.org.BudgetCalculator.dto.ClienteDTO;
-import bedu.org.BudgetCalculator.dto.CreateClienteDTO;
-import bedu.org.BudgetCalculator.service.ClienteService;
+import bedu.org.BudgetCalculator.dto.ClientDTO;
+import bedu.org.BudgetCalculator.dto.CreateClientDTO;
+import bedu.org.BudgetCalculator.service.ClientService;
 import jakarta.validation.Valid;
 
 @RestController
-@RequestMapping("cliente")
-public class ClienteController {
+@RequestMapping("client")
+public class ClientController {
 
-    @Autowired 
-    private ClienteService service;
+    @Autowired
+    private ClientService service;
 
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
-    public List<ClienteDTO> findAll() {
+    public List<ClientDTO> findAll() {
         return service.findAll();
     }
-    
+
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public ClienteDTO save(@Valid @RequestBody CreateClienteDTO data) {
+    public ClientDTO save(@Valid @RequestBody CreateClientDTO data) {
         return service.save(data);
     }
 
     @PutMapping("/{id}")
     @ResponseStatus(HttpStatus.CREATED)
-    public ClienteDTO updateCliente(@Valid @PathVariable Long id, @RequestBody CreateClienteDTO data) {
+    public ClientDTO updateCliente(@Valid @PathVariable Long id, @RequestBody CreateClientDTO data) {
         return service.update(id, data);
     }
 
