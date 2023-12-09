@@ -1,7 +1,7 @@
 package bedu.org.BudgetCalculator.controller;
 
-import bedu.org.BudgetCalculator.dto.CreateMaterialDTO;
-import bedu.org.BudgetCalculator.dto.MaterialDTO;
+import bedu.org.BudgetCalculator.dto.material.CreateMaterialDTO;
+import bedu.org.BudgetCalculator.dto.material.MaterialDTO;
 import bedu.org.BudgetCalculator.exception.material.MaterialNotFoundException;
 import bedu.org.BudgetCalculator.service.MaterialService;
 import jakarta.validation.Valid;

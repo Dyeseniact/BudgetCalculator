@@ -1,4 +1,4 @@
-package bedu.org.BudgetCalculator.dto;
+package bedu.org.BudgetCalculator.dto.material;
 
 import jakarta.validation.constraints.DecimalMin;
 import jakarta.validation.constraints.Min;
