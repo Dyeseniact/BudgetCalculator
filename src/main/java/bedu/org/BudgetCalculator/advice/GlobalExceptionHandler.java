@@ -19,7 +19,7 @@ public class GlobalExceptionHandler {
     public ErrorDTO validationError(MethodArgumentNotValidException ex) {
         List<FieldError> fieldErrors = ex.getBindingResult().getFieldErrors();
         List<String> errors = fieldErrors.stream().map(x -> x.getDefaultMessage()).toList();
-        return new ErrorDTO("ERR_VALID", "A error ocurred procesind input data", errors);
+        return new ErrorDTO("ERR_VALID", "A error ocurred procesando input data", errors);
     }
 
     @ExceptionHandler(RuntimeException.class)

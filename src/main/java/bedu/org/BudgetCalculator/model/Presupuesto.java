@@ -5,8 +5,6 @@ import lombok.*;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.util.List;
-import java.util.Map;
 @Getter
 @Setter
 @ToString
@@ -19,15 +17,12 @@ public class Presupuesto {
 
     @Column(name = "nombre_presupuesto", nullable = false)
     private String nombre;
-/*
-    @OneToMany
-    @Column(name = "conceptos")
-    private List<Concepto> concepto; //Debe llenarse con model de concepto
-   // private List<Long> conceptoId;
-*/
+    @ManyToOne
+    @JoinColumn(name = "cliente_id", referencedColumnName = "id", nullable = false)
+    private Client clienteid;
     @Column(nullable = false)
     private double total;
-    @Column(nullable = false)
+    @Column(name = "fecha_creacion",nullable = false)
     private LocalDateTime fecha_creacion;
     @Column(nullable = false)
     private LocalDate fecha_inicio;

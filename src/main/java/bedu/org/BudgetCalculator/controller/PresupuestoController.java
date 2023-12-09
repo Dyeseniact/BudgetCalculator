@@ -16,11 +16,8 @@ import java.util.Optional;
 @Slf4j
 @RequestMapping("presupuestos")
 public class PresupuestoController {
-
     @Autowired
     private PresupuestoService presupuestoService;
-
-
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
     public List<PresupuestoDTO> findAll(){
@@ -49,6 +46,7 @@ public class PresupuestoController {
     @DeleteMapping("{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void delete(@PathVariable Long id){
+        log.info("Borrando presupuesto");
         presupuestoService.deleteById(id);
     }
 
