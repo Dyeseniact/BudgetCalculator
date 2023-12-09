@@ -1,8 +1,8 @@
 package bedu.org.BudgetCalculator.controller;
 
-import bedu.org.BudgetCalculator.dto.Activity.ActivityDTO;
-import bedu.org.BudgetCalculator.dto.Activity.CreateActivityDTO;
-import bedu.org.BudgetCalculator.dto.Activity.UpdateActivityDTO;
+import bedu.org.BudgetCalculator.dto.ActivityDTO;
+import bedu.org.BudgetCalculator.dto.CreateActivityDTO;
+import bedu.org.BudgetCalculator.dto.UpdateActivityDTO;
 import bedu.org.BudgetCalculator.service.ActivityService;
 import jakarta.validation.Valid;
 import jakarta.validation.ValidationException;

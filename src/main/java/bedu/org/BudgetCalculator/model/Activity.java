@@ -19,4 +19,5 @@ public class Activity {
 
     @Column(nullable = false, length = 50)
     private String unit;
+
 }

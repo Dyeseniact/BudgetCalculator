@@ -1,9 +1,9 @@
 package bedu.org.BudgetCalculator.service;
 
-import bedu.org.BudgetCalculator.dto.Activity.ActivityDTO;
-import bedu.org.BudgetCalculator.dto.Activity.CreateActivityDTO;
-import bedu.org.BudgetCalculator.dto.Activity.UpdateActivityDTO;
-import bedu.org.BudgetCalculator.mappers.ActivityMapper;
+import bedu.org.BudgetCalculator.dto.ActivityDTO;
+import bedu.org.BudgetCalculator.dto.CreateActivityDTO;
+import bedu.org.BudgetCalculator.dto.UpdateActivityDTO;
+import bedu.org.BudgetCalculator.mapper.ActivityMapper;
 import bedu.org.BudgetCalculator.model.Activity;
 import bedu.org.BudgetCalculator.repository.ActivityRepository;
 import org.springframework.beans.factory.annotation.Autowired;
