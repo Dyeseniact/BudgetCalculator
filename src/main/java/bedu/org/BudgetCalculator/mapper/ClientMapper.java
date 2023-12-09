@@ -4,16 +4,16 @@ import org.mapstruct.InjectionStrategy;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 
-import bedu.org.BudgetCalculator.dto.ClienteDTO;
-import bedu.org.BudgetCalculator.dto.CreateClienteDTO;
-import bedu.org.BudgetCalculator.model.Cliente;
+import bedu.org.BudgetCalculator.dto.ClientDTO;
+import bedu.org.BudgetCalculator.dto.CreateClientDTO;
+import bedu.org.BudgetCalculator.model.Client;
 
 @Mapper(componentModel = "spring", injectionStrategy = InjectionStrategy.CONSTRUCTOR)
-public interface ClienteMapper {
+public interface ClientMapper {
 
-    ClienteDTO toDTO(Cliente model);
+    ClientDTO toDTO(Client model);
 
     @Mapping(target = "id", ignore = true)
-    Cliente toModel(CreateClienteDTO dto);
+    Client toModel(CreateClientDTO dto);
 
 }

@@ -14,23 +14,23 @@ import lombok.ToString;
 @Setter
 @ToString
 @Entity
-@Table(name = "Clientes")
-public class Cliente {
+@Table(name = "clients")
+public class Client {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    @Column (nullable = false, length = 50)
+    @Column(nullable = false, length = 50)
     private String name;
 
-    @Column (nullable = false, length = 50)
-    private String apellido;
+    @Column(nullable = false, length = 50, name = "last_name")
+    private String lastname;
 
-    @Column (nullable = false)
-    private String telefono;
+    @Column(nullable = false)
+    private String phone;
 
-    @Column (nullable = false, length = 50)
+    @Column(nullable = false, length = 50)
     private String email;
-    
+
 }
