@@ -1,5 +1,6 @@
 package bedu.org.BudgetCalculator.dto.Presupuesto;
 
+import bedu.org.BudgetCalculator.model.Client;
 import bedu.org.BudgetCalculator.model.Estatus;
 import lombok.Data;
 
@@ -9,7 +10,7 @@ import java.time.LocalDateTime;
 public class PresupuestoDTO {
     private long id;
     private String nombre;
-    private Customer clienteid;
+    private Client clienteid;
     private double total;
     private LocalDateTime fecha_creacion;
     private LocalDate fecha_inicio;

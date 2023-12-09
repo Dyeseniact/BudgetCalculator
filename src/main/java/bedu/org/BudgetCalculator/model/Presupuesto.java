@@ -19,7 +19,7 @@ public class Presupuesto {
     private String nombre;
     @ManyToOne
     @JoinColumn(name = "cliente_id", referencedColumnName = "id", nullable = false)
-    private Customer clienteid;
+    private Client clienteid;
     @Column(nullable = false)
     private double total;
     @Column(name = "fecha_creacion",nullable = false)

@@ -1,6 +1,7 @@
 package bedu.org.BudgetCalculator.dto.Presupuesto;
 
 
+import bedu.org.BudgetCalculator.model.Client;
 import bedu.org.BudgetCalculator.model.Estatus;
 import jakarta.validation.constraints.*;
 import lombok.Data;
@@ -15,7 +16,7 @@ public class CreatePresupuestoDTO {
     @NotBlank(message = "El campo nombre no puede estar vació, revisar el dato")
     private String nombre;
     @NotNull
-    private Customer clienteid;
+    private Client clienteid;
 
     @PositiveOrZero(message = "El total debe ser positivo")
     @DecimalMin(value = "1.0000",message = "El total debe ser mayor a 0")
