@@ -1,8 +1,8 @@
 package bedu.org.BudgetCalculator.mapper;
 
-import bedu.org.BudgetCalculator.dto.CreateMaterialDTO;
-import bedu.org.BudgetCalculator.dto.MaterialDTO;
-import bedu.org.BudgetCalculator.dto.UpdateMaterialDTO;
+import bedu.org.BudgetCalculator.dto.material.CreateMaterialDTO;
+import bedu.org.BudgetCalculator.dto.material.MaterialDTO;
+import bedu.org.BudgetCalculator.dto.material.UpdateMaterialDTO;
 import bedu.org.BudgetCalculator.model.Material;
 import org.mapstruct.InjectionStrategy;
 import org.mapstruct.Mapper;

@@ -14,8 +14,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
-import bedu.org.BudgetCalculator.dto.ClientDTO;
-import bedu.org.BudgetCalculator.dto.CreateClientDTO;
+import bedu.org.BudgetCalculator.dto.client.ClientDTO;
+import bedu.org.BudgetCalculator.dto.client.CreateClientDTO;
 import bedu.org.BudgetCalculator.service.ClientService;
 import jakarta.validation.Valid;
 

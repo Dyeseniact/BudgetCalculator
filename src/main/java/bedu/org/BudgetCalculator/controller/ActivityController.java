@@ -1,8 +1,8 @@
 package bedu.org.BudgetCalculator.controller;
 
-import bedu.org.BudgetCalculator.dto.ActivityDTO;
-import bedu.org.BudgetCalculator.dto.CreateActivityDTO;
-import bedu.org.BudgetCalculator.dto.UpdateActivityDTO;
+import bedu.org.BudgetCalculator.dto.activity.ActivityDTO;
+import bedu.org.BudgetCalculator.dto.activity.CreateActivityDTO;
+import bedu.org.BudgetCalculator.dto.activity.UpdateActivityDTO;
 import bedu.org.BudgetCalculator.exception.activity.ActivityNotFoundException;
 import bedu.org.BudgetCalculator.service.ActivityService;
 import jakarta.validation.Valid;
