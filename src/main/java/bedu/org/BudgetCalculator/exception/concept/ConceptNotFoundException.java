@@ -1,4 +1,4 @@
-package bedu.org.BudgetCalculator.exception.Concept;
+package bedu.org.BudgetCalculator.exception.concept;
 
 import bedu.org.BudgetCalculator.exception.RuntimeException;
 

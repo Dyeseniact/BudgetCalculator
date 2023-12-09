@@ -1,7 +1,8 @@
 package bedu.org.BudgetCalculator.dto.Concept;
 
 import bedu.org.BudgetCalculator.model.Activity;
-import bedu.org.BudgetCalculator.model.Presupuesto;
+import bedu.org.BudgetCalculator.model.Material;
+import bedu.org.BudgetCalculator.model.Budget;
 import lombok.Data;
 
 
@@ -9,15 +10,13 @@ import java.time.LocalDate;
 @Data
 public class ConceptDTO {
     private long id;
-    private Presupuesto presupuestoId;
+    private Budget budgetId;
     private Activity activityId;
-/*
-    private Long productoId ;
-*/
+    private Material materialId ;
     private String description;
-    private double cantidad;
-    private double precioUnit;
+    private double quantity;
+    private double unitPrice;
     private double subtotal;
-    private LocalDate fecha_inicio;
-    private LocalDate fecha_fin;
+    private LocalDate startDate;
+    private LocalDate endDate;
 }

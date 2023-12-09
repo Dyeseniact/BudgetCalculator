@@ -3,7 +3,7 @@ package bedu.org.BudgetCalculator.service;
 import bedu.org.BudgetCalculator.dto.Concept.ConceptDTO;
 import bedu.org.BudgetCalculator.dto.Concept.CreateConceptDTO;
 import bedu.org.BudgetCalculator.dto.Concept.UpdateConceptDTO;
-import bedu.org.BudgetCalculator.exception.Concept.ConceptNotFoundException;
+import bedu.org.BudgetCalculator.exception.concept.ConceptNotFoundException;
 import bedu.org.BudgetCalculator.mapper.ConceptMapper;
 import bedu.org.BudgetCalculator.model.Concept;
 import bedu.org.BudgetCalculator.repository.ConceptRepository;
@@ -20,6 +20,9 @@ public class ConceptService {
     @Autowired
     private ConceptRepository conceptoRepository;
 
+    public ConceptService() {
+    }
+
     public List<ConceptDTO> findAll(){
         return conceptoRepository
                 .findAll()
@@ -29,11 +32,11 @@ public class ConceptService {
         ;
     }
     public Optional<ConceptDTO> findById(Long id) throws ConceptNotFoundException {
-        Optional<Concept> result = conceptoRepository.findById(id);
-        if (!result.isPresent()){
+        Optional<Concept> resultConcept = conceptoRepository.findById(id);
+        if (!resultConcept.isPresent()){
             throw new ConceptNotFoundException(id);
         }
-        return result
+        return resultConcept
                 .stream()
                 .map(conceptoMapper::toDTO)
                 .findFirst()
@@ -41,26 +44,28 @@ public class ConceptService {
     }
 
     public ConceptDTO save(CreateConceptDTO data){
+        data.setSubtotal(data.getQuantity()*data.getUnitPrice());
         Concept entity = conceptoRepository
                 .save(conceptoMapper.toModel(data));
         return conceptoMapper.toDTO(entity)       ;
     }
     public void update(Long id, UpdateConceptDTO data) throws ConceptNotFoundException {
 
-        Optional<Concept> existeConcepto = conceptoRepository.findById(id);
-        if (!existeConcepto.isPresent()){
+        Optional<Concept> resultConcept = conceptoRepository.findById(id);
+        if (!resultConcept.isPresent()){
             throw new ConceptNotFoundException(id);
         }
-        Concept concepto = existeConcepto.get();
+        Concept concept = resultConcept.get();
+        data.setSubtotal(data.getQuantity()*data.getUnitPrice());
 
         // Actualizar el Concepto en la base de datos
-        conceptoMapper.update(concepto,data);
-        conceptoRepository.save(concepto);
+        conceptoMapper.update(concept,data);
+        conceptoRepository.save(concept);
     }
 
     public void deleteById(Long id) throws ConceptNotFoundException {
-        Optional<Concept> existeConcepto = conceptoRepository.findById(id);
-        if (!existeConcepto.isPresent()){
+        Optional<Concept> resultConcept = conceptoRepository.findById(id);
+        if (!resultConcept.isPresent()){
             throw new ConceptNotFoundException(id);
         }
         conceptoRepository.deleteById(id);

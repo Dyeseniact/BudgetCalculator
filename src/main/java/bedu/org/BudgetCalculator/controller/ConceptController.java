@@ -3,7 +3,7 @@ package bedu.org.BudgetCalculator.controller;
 import bedu.org.BudgetCalculator.dto.Concept.ConceptDTO;
 import bedu.org.BudgetCalculator.dto.Concept.CreateConceptDTO;
 import bedu.org.BudgetCalculator.dto.Concept.UpdateConceptDTO;
-import bedu.org.BudgetCalculator.exception.Concept.ConceptNotFoundException;
+import bedu.org.BudgetCalculator.exception.concept.ConceptNotFoundException;
 import bedu.org.BudgetCalculator.service.ConceptService;
 import jakarta.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
@@ -16,7 +16,7 @@ import java.util.Optional;
 
 @RestController
 @Slf4j
-@RequestMapping("conceptos")
+@RequestMapping("concepts")
 public class ConceptController {
     @Autowired
     private ConceptService conceptoService;
