@@ -2,7 +2,7 @@ package bedu.org.BudgetCalculator.service;
 
 import bedu.org.BudgetCalculator.dto.Concepto.ConceptoDTO;
 import bedu.org.BudgetCalculator.dto.Concepto.CreateConceptoDTO;
-import bedu.org.BudgetCalculator.mappers.ConceptoMapper;
+import bedu.org.BudgetCalculator.mapper.ConceptoMapper;
 import bedu.org.BudgetCalculator.model.Concepto;
 import bedu.org.BudgetCalculator.repository.ConceptoRepository;
 import org.springframework.beans.factory.annotation.Autowired;

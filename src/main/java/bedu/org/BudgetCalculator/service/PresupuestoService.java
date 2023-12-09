@@ -2,7 +2,7 @@ package bedu.org.BudgetCalculator.service;
 
 import bedu.org.BudgetCalculator.dto.Presupuesto.CreatePresupuestoDTO;
 import bedu.org.BudgetCalculator.dto.Presupuesto.PresupuestoDTO;
-import bedu.org.BudgetCalculator.mappers.PresupuestoMapper;
+import bedu.org.BudgetCalculator.mapper.PresupuestoMapper;
 import bedu.org.BudgetCalculator.model.Presupuesto;
 import bedu.org.BudgetCalculator.repository.PresupuestoRepository;
 import org.springframework.beans.factory.annotation.Autowired;

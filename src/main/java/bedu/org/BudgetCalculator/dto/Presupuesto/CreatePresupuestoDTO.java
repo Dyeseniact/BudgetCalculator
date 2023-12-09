@@ -1,7 +1,6 @@
 package bedu.org.BudgetCalculator.dto.Presupuesto;
 
 
-import bedu.org.BudgetCalculator.model.Customer;
 import bedu.org.BudgetCalculator.model.Estatus;
 import jakarta.validation.constraints.*;
 import lombok.Data;
