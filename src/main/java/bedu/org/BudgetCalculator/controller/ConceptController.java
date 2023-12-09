@@ -1,8 +1,10 @@
 package bedu.org.BudgetCalculator.controller;
 
-import bedu.org.BudgetCalculator.dto.Concepto.ConceptoDTO;
-import bedu.org.BudgetCalculator.dto.Concepto.CreateConceptoDTO;
-import bedu.org.BudgetCalculator.service.ConceptoService;
+import bedu.org.BudgetCalculator.dto.Concept.ConceptDTO;
+import bedu.org.BudgetCalculator.dto.Concept.CreateConceptDTO;
+import bedu.org.BudgetCalculator.dto.Concept.UpdateConceptDTO;
+import bedu.org.BudgetCalculator.exception.Concept.ConceptNotFoundException;
+import bedu.org.BudgetCalculator.service.ConceptService;
 import jakarta.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,41 +17,42 @@ import java.util.Optional;
 @RestController
 @Slf4j
 @RequestMapping("conceptos")
-public class ConceptoController {
+public class ConceptController {
     @Autowired
-    private ConceptoService conceptoService;
+    private ConceptService conceptoService;
 
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
-    public List<ConceptoDTO> findAll(){
+    public List<ConceptDTO> findAll(){
         return conceptoService.findAll();
     }
     @GetMapping("{id}")
     @ResponseStatus(HttpStatus.OK)
-    public Optional<ConceptoDTO> findById(@PathVariable Long id){
+    public Optional<ConceptDTO> findById(@PathVariable Long id) throws ConceptNotFoundException {
         return conceptoService.findById(id);
     }
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public ConceptoDTO save(@Valid @RequestBody CreateConceptoDTO data){
+    public ConceptDTO save(@Valid @RequestBody CreateConceptDTO data){
         log.info("Creando concepto");
         log.info(data.toString());
         return conceptoService.save(data);
     }
 
     @PatchMapping("{id}")
-    @ResponseStatus(HttpStatus.CREATED)
-    public ConceptoDTO save(@PathVariable Long id,@Valid @RequestBody CreateConceptoDTO data){
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void update(@PathVariable Long id,@Valid @RequestBody UpdateConceptDTO data) throws ConceptNotFoundException {
         //data.setId(id);
         log.info("Actualizando concepto");
         log.info(data.toString());
-        return conceptoService.save(id,data);
+        conceptoService.update(id,data);
     }
 
     @DeleteMapping("{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void deleteById(@PathVariable Long id){
+    public void deleteById(@PathVariable Long id) throws ConceptNotFoundException {
+        log.info("Eliminando concepto");
         conceptoService.deleteById(id);
     }
 }
