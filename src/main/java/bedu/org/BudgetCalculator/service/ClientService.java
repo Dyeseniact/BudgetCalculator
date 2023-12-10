@@ -6,8 +6,8 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import bedu.org.BudgetCalculator.dto.ClientDTO;
-import bedu.org.BudgetCalculator.dto.CreateClientDTO;
+import bedu.org.BudgetCalculator.dto.client.ClientDTO;
+import bedu.org.BudgetCalculator.dto.client.CreateClientDTO;
 import bedu.org.BudgetCalculator.exception.client.ClientNotFoundException;
 import bedu.org.BudgetCalculator.mapper.ClientMapper;
 import bedu.org.BudgetCalculator.model.Client;
