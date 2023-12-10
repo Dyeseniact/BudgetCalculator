@@ -1,4 +1,4 @@
-package bedu.org.BudgetCalculator.dto;
+package bedu.org.BudgetCalculator.dto.activity;
 
 import lombok.Data;
 

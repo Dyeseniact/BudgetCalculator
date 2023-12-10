@@ -4,8 +4,8 @@ import org.mapstruct.InjectionStrategy;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 
-import bedu.org.BudgetCalculator.dto.ClientDTO;
-import bedu.org.BudgetCalculator.dto.CreateClientDTO;
+import bedu.org.BudgetCalculator.dto.client.ClientDTO;
+import bedu.org.BudgetCalculator.dto.client.CreateClientDTO;
 import bedu.org.BudgetCalculator.model.Client;
 
 @Mapper(componentModel = "spring", injectionStrategy = InjectionStrategy.CONSTRUCTOR)
