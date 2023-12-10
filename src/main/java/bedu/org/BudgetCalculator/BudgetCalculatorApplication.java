@@ -1,6 +1,6 @@
 package bedu.org.BudgetCalculator;
 
-//import io.github.cdimascio.dotenv.Dotenv;
+import io.github.cdimascio.dotenv.Dotenv;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
@@ -8,7 +8,6 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class BudgetCalculatorApplication {
 
 	public static void main(String[] args) {
-		/*
 
 		Dotenv dotenv = Dotenv.load();
 
@@ -16,7 +15,7 @@ public class BudgetCalculatorApplication {
 		System.setProperty("DATABASE_USER", dotenv.get("DATABASE_USER"));
 		System.setProperty("DATABASE_PASSWORD", dotenv.get("DATABASE_PASSWORD"));
 
-*/
+
 		SpringApplication.run(BudgetCalculatorApplication.class, args);
 
 

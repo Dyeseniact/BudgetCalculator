@@ -31,9 +31,11 @@ public class Budget {
     private LocalDate endDate;
     @Column(nullable = false)
     private Estatus status;
-
+    @Column(name = "is_Active")
     private boolean Active;
+    @Column(name = "is_Generated")
     private boolean Generated;
+    @Column(name = "is_Accepted")
     private boolean Accepted;
 
 
