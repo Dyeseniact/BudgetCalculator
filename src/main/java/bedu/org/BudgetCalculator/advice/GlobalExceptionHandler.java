@@ -2,7 +2,6 @@ package bedu.org.BudgetCalculator.advice;
 
 import bedu.org.BudgetCalculator.dto.ErrorDTO;
 import bedu.org.BudgetCalculator.exception.RuntimeException;
-import bedu.org.BudgetCalculator.exception.ValidationException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.validation.FieldError;
@@ -17,7 +16,7 @@ import java.util.List;
 @RestControllerAdvice
 public class GlobalExceptionHandler {
 
-    @ExceptionHandler(ValidationException.class)
+    @ExceptionHandler(MethodArgumentNotValidException.class)
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     public ErrorDTO validationError(MethodArgumentNotValidException ex) {
         List<FieldError> fieldErrors = ex.getBindingResult().getFieldErrors();
