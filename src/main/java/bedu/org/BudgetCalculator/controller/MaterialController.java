@@ -34,19 +34,19 @@ public class MaterialController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public MaterialDTO saveMaterial(@Valid @RequestBody CreateMaterialDTO data) {
+    public MaterialDTO save(@Valid @RequestBody CreateMaterialDTO data) {
         return materialService.save(data);
     }
 
     @PutMapping("/{id}")
     @ResponseStatus(HttpStatus.CREATED)
-    public MaterialDTO updateMaterial(@Valid  @PathVariable Long id, @RequestBody CreateMaterialDTO data) throws MaterialNotFoundException {
+    public MaterialDTO update(@Valid  @PathVariable Long id, @RequestBody CreateMaterialDTO data) throws MaterialNotFoundException {
         return materialService.update(id,data);
     }
 
     @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void deleteMaterial(@PathVariable Long id) throws MaterialNotFoundException {
+    public void delete(@PathVariable Long id) throws MaterialNotFoundException {
         materialService.delete(id);
     }
 }
