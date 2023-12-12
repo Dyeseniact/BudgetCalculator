@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import bedu.org.BudgetCalculator.dto.client.ClientDTO;
 import bedu.org.BudgetCalculator.dto.client.CreateClientDTO;
+import bedu.org.BudgetCalculator.exception.client.ClientNotFoundException;
 import bedu.org.BudgetCalculator.service.ClientService;
 import jakarta.validation.Valid;
 
@@ -26,24 +27,35 @@ public class ClientController {
     @Autowired
     private ClientService service;
 
+    // Get all client
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
     public List<ClientDTO> findAll() {
         return service.findAll();
     }
 
+    // Get client by id
+    @GetMapping("/{id}")
+    @ResponseStatus(HttpStatus.OK)
+    public ClientDTO findById(@PathVariable Long id) throws ClientNotFoundException {
+        return service.findById(id);
+    }
+
+    // Create a new client
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     public ClientDTO save(@Valid @RequestBody CreateClientDTO data) {
         return service.save(data);
     }
 
+    // Update an existing client
     @PutMapping("/{id}")
     @ResponseStatus(HttpStatus.CREATED)
     public ClientDTO updateCliente(@Valid @PathVariable Long id, @RequestBody CreateClientDTO data) {
         return service.update(id, data);
     }
 
+    // Delete an existing client
     @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void deleteCliente(@PathVariable Long id) {

@@ -1,12 +1,14 @@
 package bedu.org.BudgetCalculator.service;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import bedu.org.BudgetCalculator.dto.client.ClientDTO;
 import bedu.org.BudgetCalculator.dto.client.CreateClientDTO;
+import bedu.org.BudgetCalculator.exception.client.ClientNotFoundException;
 import bedu.org.BudgetCalculator.mapper.ClientMapper;
 import bedu.org.BudgetCalculator.model.Client;
 import bedu.org.BudgetCalculator.repository.ClientRepository;
@@ -23,6 +25,16 @@ public class ClientService {
     public List<ClientDTO> findAll() {
         List<Client> data = repository.findAll();
         return data.stream().map(mapper::toDTO).toList();
+    }
+
+    public ClientDTO findById(Long id) throws ClientNotFoundException {
+        Optional<Client> result = repository.findById(id);
+
+        if(!result.isPresent()){
+            throw new ClientNotFoundException(id);
+        }
+
+        return mapper.toDTO(result.get());
     }
 
     public ClientDTO save(CreateClientDTO data) {
