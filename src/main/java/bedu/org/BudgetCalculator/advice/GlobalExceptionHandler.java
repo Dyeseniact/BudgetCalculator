@@ -15,7 +15,7 @@ import java.util.List;
 @RestControllerAdvice
 public class GlobalExceptionHandler {
 
-    @ExceptionHandler(ValidationException.class)
+    @ExceptionHandler(MethodArgumentNotValidException.class)
     public ErrorDTO validationError(MethodArgumentNotValidException ex) {
         List<FieldError> fieldErrors = ex.getBindingResult().getFieldErrors();
         List<String> errors = fieldErrors.stream().map(x -> x.getDefaultMessage()).toList();

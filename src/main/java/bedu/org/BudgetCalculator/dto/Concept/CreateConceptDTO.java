@@ -16,19 +16,17 @@ public class CreateConceptDTO {
     private Activity activityId;
     private Material materialId;
 
-    @NotBlank
-    private String description; //Debe llenarse con model de actividad
+    @NotBlank(message = "La decripción es obligatoria")
+    private String description;
     @DecimalMin(value = "0.01", message = "La cantidad minima bebe ser igual o mayor a 0.01")
     private double quantity;
     @DecimalMin(value = "0.01", message = "El precio minimo debe ser igual o mayor a 0.01 centavo")
     private double unitPrice;
-    //@PositiveOrZero(message = "El subtotal debe ser mayor o igual a 0")
-    //@DecimalMin(value = "0.01", message = "El subtotal debe ser mayor a 0.01 centavo")
     private double subtotal;
-    @NotNull
+    @NotNull(message = "La fecha inicio es obligatoria")
     @FutureOrPresent(message = "La fecha debe ser igual o mayor a hoy")
     private LocalDate startDate;
-    @NotNull
+    @NotNull(message = "La fecha fin es obligatoria")
     @Future(message = "La fecha debe ser  mayor a hoy")
     private LocalDate endDate;
 }

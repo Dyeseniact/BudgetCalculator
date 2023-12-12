@@ -43,7 +43,7 @@ public class ConceptController {
     @PatchMapping("{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void update(@PathVariable Long id,@Valid @RequestBody UpdateConceptDTO data) throws ConceptNotFoundException {
-        //data.setId(id);
+
         log.info("Actualizando concepto");
         log.info(data.toString());
         conceptoService.update(id,data);
@@ -55,4 +55,12 @@ public class ConceptController {
         log.info("Eliminando concepto");
         conceptoService.deleteById(id);
     }
+
+    @GetMapping("/budgets/{id}")
+    @ResponseStatus(HttpStatus.OK)
+    public List<ConceptDTO> findConceptsByBudget(@PathVariable Long id){
+        log.info("Listando conceptos por Presupuesto");
+        return conceptoService.findConceptsByBudget(id);
+    }
+
 }

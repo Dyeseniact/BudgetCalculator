@@ -12,7 +12,6 @@ public class BudgetDTO {
     private String nameBudget;
     private Client customerId;
     private double total;
-    private LocalDateTime creationDate;
     private LocalDate startDate;
     private LocalDate endDate;
     private Estatus status;

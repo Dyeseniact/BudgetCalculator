@@ -50,7 +50,6 @@ public class ConceptService {
         return conceptoMapper.toDTO(entity)       ;
     }
     public void update(Long id, UpdateConceptDTO data) throws ConceptNotFoundException {
-
         Optional<Concept> resultConcept = conceptoRepository.findById(id);
         if (!resultConcept.isPresent()){
             throw new ConceptNotFoundException(id);
@@ -69,5 +68,10 @@ public class ConceptService {
             throw new ConceptNotFoundException(id);
         }
         conceptoRepository.deleteById(id);
+    }
+
+    public List<ConceptDTO> findConceptsByBudget(Long id){
+        List<Concept> listado = conceptoRepository.findsConceptsByBudgetId(id);
+        return  conceptoMapper.toDTO(listado);
     }
 }

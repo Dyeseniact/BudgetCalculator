@@ -13,7 +13,6 @@ import bedu.org.BudgetCalculator.repository.BudgetRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
@@ -51,8 +50,7 @@ public class BudgetService {
     }
 
     public BudgetDTO save(CreateBudgetDTO data){
-        LocalDateTime fecha=LocalDateTime.now();
-        data.setCreationDate(fecha);
+
         Budget entity = budgetRepository
                 .save(budgetMapper.toModel(data));
 
@@ -66,7 +64,7 @@ public class BudgetService {
         budgetRepository.deleteById(id);
     }
 
-    public BudgetDTO save(Long id, UpdateBudgetDTO data) throws BudgetNotFoundException {
+    public BudgetDTO update(Long id, UpdateBudgetDTO data) throws BudgetNotFoundException {
         Optional<Budget> resultBudget = budgetRepository.findById(id);
         if (!resultBudget.isPresent()){
             throw new BudgetNotFoundException(id);
@@ -85,5 +83,7 @@ public class BudgetService {
 
         return budgetMapper.toDTO(budget);
     }
+
+
 
 }

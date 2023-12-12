@@ -2,9 +2,11 @@ package bedu.org.BudgetCalculator.model;
 
 import jakarta.persistence.*;
 import lombok.*;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.SourceType;
 
+import java.time.Instant;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 @Getter
 @Setter
 @ToString
@@ -23,8 +25,9 @@ public class Budget {
 
     @Column(nullable = false)
     private double total;
-    @Column(name = "creation_date",nullable = false)
-    private LocalDateTime creationDate;
+    @CreationTimestamp(source = SourceType.DB)
+    @Column(name = "creation_date")
+    private Instant creationDate;
     @Column(name ="start_date" , nullable = false)
     private LocalDate startDate;
     @Column(name ="end_date" , nullable = false)

@@ -7,26 +7,26 @@ import jakarta.validation.constraints.*;
 import lombok.Data;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 
 
 @Data
 public class CreateBudgetDTO {
 
-    @NotBlank(message = "El campo nombre no puede estar vació, revisar el dato")
+    @NotBlank(message = "El campo nombre presupuesto es obligatorio")
     private String nameBudget;
-    @NotNull
+    @NotNull(message = "El id del cliente es obligatorio.")
     private Client customerId;
     @PositiveOrZero(message = "El total debe ser positivo")
     @DecimalMin(value = "1.0000",message = "El total debe ser mayor a 0")
     private double total;
-    @NotNull
-    private LocalDateTime creationDate;
-    @NotNull
+
+    @NotNull(message = "La feha inicio es obligatoria")
+    @FutureOrPresent(message = "La fecha inicio debe ser igual o mayor a hoy.")
     private LocalDate startDate;
-    @NotNull
+    @NotNull(message = "La fecha fin es obligatoria")
+    @Future(message = "La fecha fin debe ser mayor a hoy")
     private LocalDate endDate;
-    @NotNull
+    @NotNull(message = "Es campo Estado es obligatorio")
     private Estatus status;
     private boolean Active;
     private boolean Generated;

@@ -6,19 +6,14 @@ import lombok.Data;
 import java.time.LocalDate;
 @Data
 public class UpdateConceptDTO {
-    @NotBlank
-    private String description; //Debe llenarse con model de actividad
-    @DecimalMin(value = "0.01", message = "La cantidad minima bebe ser igual o mayor a 0.01")
+    private String description;
     private double quantity;
-    @DecimalMin(value = "0.01", message = "El precio minimo debe ser igual o mayor a 0.01 centavo")
     private double unitPrice;
-    //@PositiveOrZero(message = "El subtotal debe ser mayor o igual a 0")
-    //@DecimalMin(value = "0.01", message = "El subtotal debe ser mayor a 0.01 centavo")
     private double subtotal;
-    @NotNull
-    @FutureOrPresent(message = "La fecha debe ser igual o mayor a hoy")
+
+    @FutureOrPresent(message = "La fecha inicio debe ser igual o mayor a hoy")
     private LocalDate startDate;
-    @NotNull
-    @Future(message = "La fecha debe ser  mayor a hoy")
+
+    @Future(message = "La fecha fin debe ser  mayor a hoy")
     private LocalDate endDate;
 }

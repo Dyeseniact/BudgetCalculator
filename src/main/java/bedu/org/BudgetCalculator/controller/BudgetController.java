@@ -42,7 +42,7 @@ public class BudgetController {
         log.info("Actualziando presupuesto");
         log.info(data.toString());
 
-        return budgetService.save(id, data) ;
+        return budgetService.update(id, data) ;
     }
 
     @DeleteMapping("{id}")
