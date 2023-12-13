@@ -18,8 +18,8 @@ public class CreateBudgetDTO {
      @NotBlank(message = "El campo nombre presupuesto es obligatorio")
      private String nameBudget;
 
-     @Schema(description = "Customer ID", type = "Client",example = "Client{'id': 60}"
-     )
+    @Schema(description = "Customer ID", example = "70"
+    )
     @NotNull(message = "El id del cliente es obligatorio.")
     private Client customerId;
 
