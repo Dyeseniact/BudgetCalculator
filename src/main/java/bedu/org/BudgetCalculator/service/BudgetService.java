@@ -10,6 +10,7 @@ import bedu.org.BudgetCalculator.mapper.ConceptMapper;
 import bedu.org.BudgetCalculator.model.Budget;
 import bedu.org.BudgetCalculator.repository.ConceptRepository;
 import bedu.org.BudgetCalculator.repository.BudgetRepository;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -48,7 +49,7 @@ public class BudgetService {
                 .map(budgetMapper::toDTO)
                 .findFirst();
     }
-
+    @Transactional
     public BudgetDTO save(CreateBudgetDTO data){
 
         Budget entity = budgetRepository
@@ -64,6 +65,7 @@ public class BudgetService {
         budgetRepository.deleteById(id);
     }
 
+    @Transactional
     public BudgetDTO update(Long id, UpdateBudgetDTO data) throws BudgetNotFoundException {
         Optional<Budget> resultBudget = budgetRepository.findById(id);
         if (!resultBudget.isPresent()){
@@ -83,7 +85,5 @@ public class BudgetService {
 
         return budgetMapper.toDTO(budget);
     }
-
-
 
 }

@@ -7,6 +7,7 @@ import bedu.org.BudgetCalculator.exception.concept.ConceptNotFoundException;
 import bedu.org.BudgetCalculator.mapper.ConceptMapper;
 import bedu.org.BudgetCalculator.model.Concept;
 import bedu.org.BudgetCalculator.repository.ConceptRepository;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -43,12 +44,14 @@ public class ConceptService {
                 ;
     }
 
+    @Transactional
     public ConceptDTO save(CreateConceptDTO data){
         data.setSubtotal(data.getQuantity()*data.getUnitPrice());
         Concept entity = conceptoRepository
                 .save(conceptoMapper.toModel(data));
         return conceptoMapper.toDTO(entity)       ;
     }
+    @Transactional
     public void update(Long id, UpdateConceptDTO data) throws ConceptNotFoundException {
         Optional<Concept> resultConcept = conceptoRepository.findById(id);
         if (!resultConcept.isPresent()){
