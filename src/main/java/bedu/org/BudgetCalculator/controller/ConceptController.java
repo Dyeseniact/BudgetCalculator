@@ -5,6 +5,8 @@ import bedu.org.BudgetCalculator.dto.Concept.CreateConceptDTO;
 import bedu.org.BudgetCalculator.dto.Concept.UpdateConceptDTO;
 import bedu.org.BudgetCalculator.exception.concept.ConceptNotFoundException;
 import bedu.org.BudgetCalculator.service.ConceptService;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +16,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import java.util.Optional;
 
+@Tag(name = "Endpoint of Concept",  description = "CRUD of Concept")
 @RestController
 @Slf4j
 @RequestMapping("concepts")
@@ -21,17 +24,21 @@ public class ConceptController {
     @Autowired
     private ConceptService conceptoService;
 
+    @Operation(summary = "get the concept")
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
     public List<ConceptDTO> findAll(){
         return conceptoService.findAll();
     }
+
+    @Operation(summary = "get the concept by ID")
     @GetMapping("{id}")
     @ResponseStatus(HttpStatus.OK)
     public Optional<ConceptDTO> findById(@PathVariable Long id) throws ConceptNotFoundException {
         return conceptoService.findById(id);
     }
 
+    @Operation(summary = "creating the concept")
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     public ConceptDTO save(@Valid @RequestBody CreateConceptDTO data){
@@ -40,6 +47,7 @@ public class ConceptController {
         return conceptoService.save(data);
     }
 
+    @Operation(summary = "updating the concept")
     @PatchMapping("{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void update(@PathVariable Long id,@Valid @RequestBody UpdateConceptDTO data) throws ConceptNotFoundException {
@@ -49,6 +57,7 @@ public class ConceptController {
         conceptoService.update(id,data);
     }
 
+    @Operation(summary = "deleting the concept")
     @DeleteMapping("{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void deleteById(@PathVariable Long id) throws ConceptNotFoundException {

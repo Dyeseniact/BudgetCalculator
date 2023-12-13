@@ -2,6 +2,8 @@ package bedu.org.BudgetCalculator.controller;
 
 import java.util.List;
 
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -20,6 +22,7 @@ import bedu.org.BudgetCalculator.exception.client.ClientNotFoundException;
 import bedu.org.BudgetCalculator.service.ClientService;
 import jakarta.validation.Valid;
 
+@Tag(name = "Endpoint of Client",  description = "CRUD of Client")
 @RestController
 @RequestMapping("client")
 public class ClientController {
@@ -28,6 +31,7 @@ public class ClientController {
     private ClientService service;
 
     // Get all client
+    @Operation(summary = "get the client")
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
     public List<ClientDTO> findAll() {
@@ -35,6 +39,7 @@ public class ClientController {
     }
 
     // Get client by id
+    @Operation(summary = "get the client by ID")
     @GetMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
     public ClientDTO findById(@PathVariable Long id) throws ClientNotFoundException {
@@ -42,6 +47,7 @@ public class ClientController {
     }
 
     // Create a new client
+    @Operation(summary = "creating the client")
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     public ClientDTO save(@Valid @RequestBody CreateClientDTO data) {
@@ -49,6 +55,7 @@ public class ClientController {
     }
 
     // Update an existing client
+    @Operation(summary = "updating the client")
     @PutMapping("/{id}")
     @ResponseStatus(HttpStatus.CREATED)
     public ClientDTO updateCliente(@Valid @PathVariable Long id, @RequestBody CreateClientDTO data) {
@@ -56,6 +63,7 @@ public class ClientController {
     }
 
     // Delete an existing client
+    @Operation(summary = "deleting the client")
     @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void deleteCliente(@PathVariable Long id) {
