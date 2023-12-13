@@ -18,30 +18,30 @@ public class CreateBudgetDTO {
      @NotBlank(message = "El campo nombre presupuesto es obligatorio")
      private String nameBudget;
 
-     @Schema(description = "Customer ID", example = "60"
+     @Schema(description = "Customer ID", type = "Client",example = "Client{'id': 60}"
      )
     @NotNull(message = "El id del cliente es obligatorio.")
     private Client customerId;
 
-    @Schema(description = "Total of the budget", example = "$2,500"
+    @Schema(description = "Total of the budget", example = "2500.00"
     )
     @PositiveOrZero(message = "El total debe ser positivo")
     @DecimalMin(value = "1.0000",message = "El total debe ser mayor a 0")
     private double total;
 
-    @Schema(description = "Day the budget was created", example = "12/12/2023"
+    @Schema(description = "Day the budget was created", example = "2024-01-01"
     )
     @NotNull(message = "La feha inicio es obligatoria")
     @FutureOrPresent(message = "La fecha inicio debe ser igual o mayor a hoy.")
     private LocalDate startDate;
 
-    @Schema(description = "Day the activities end", example = "10/01/2024"
+    @Schema(description = "Day the activities end", example = "2024-04-04"
     )
     @NotNull(message = "La fecha fin es obligatoria")
     @Future(message = "La fecha fin debe ser mayor a hoy")
     private LocalDate endDate;
 
-    @Schema(description = "Status of the budget", example = "created"
+    @Schema(description = "Status of the budget", example = "ACTIVO"
     )
     @NotNull(message = "Es campo Estado es obligatorio")
     private Estatus status;

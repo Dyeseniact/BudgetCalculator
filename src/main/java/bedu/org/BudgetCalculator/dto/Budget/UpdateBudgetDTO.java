@@ -18,23 +18,23 @@ public class UpdateBudgetDTO {
     )
     private Client customerId;
 
-    @Schema(description = "Total of the budget", example = "$2,500"
+    @Schema(description = "Total of the budget", example = "27500.50"
     )
     @PositiveOrZero(message = "El total debe ser positivo")
     @DecimalMin(value = "1.0000",message = "El total debe ser mayor a 0")
     private double total;
 
-    @Schema(description = "Day activities begin", example = "16/12/2023"
+    @Schema(description = "Day activities begin", example = "2023-12-12"
     )
     @FutureOrPresent(message = "La fecha inicio debe ser mayor o igual a hoy.")
     private LocalDate startDate;
 
-    @Schema(description = "Day the activities end", example = "10/01/2024"
+    @Schema(description = "Day the activities end", example = "2024-04-04"
     )
     @Future(message = "La fecha fin debe ser mayor a hoy")
     private LocalDate endDate;
 
-    @Schema(description = "Status of the budget", example = "created"
+    @Schema(description = "Status of the budget", example = "ACTIVO"
     )
     private Estatus status;
 
