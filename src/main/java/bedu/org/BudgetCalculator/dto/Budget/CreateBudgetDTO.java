@@ -15,7 +15,7 @@ public class CreateBudgetDTO {
 
      @Schema(description = "Name of the budget", example = "Installation of security systems."
     )
-    @NotBlank(message = "El campo nombre presupuesto es obligatorio")
+     @NotBlank(message = "El campo nombre presupuesto es obligatorio")
      private String nameBudget;
 
      @Schema(description = "Customer ID", example = "60"

@@ -26,9 +26,6 @@ public class BudgetDTO {
     )
     private double total;
 
-    @Schema(description = "Day the budget was created", example = "12/12/2023"
-    )
-    private LocalDateTime creationDate;
 
     @Schema(description = "Day activities begin", example = "16/12/2023"
     )
