@@ -85,13 +85,13 @@ public class MaterialControllerE2ETest {
     @DisplayName("PUT /material/{id} should update a material successfully")
     void updateMaterialTest() throws Exception {
         Material existingMaterial = new Material();
-        existingMaterial.setName("Cal");
+        existingMaterial.setName("Grava");
         existingMaterial.setPrice(40.0);
         existingMaterial.setQuantity(15);
         Material savedMaterial = repository.save(existingMaterial);
 
         MaterialDTO updatedMaterialDTO = new MaterialDTO();
-        updatedMaterialDTO.setName("Cal Mejorada");
+        updatedMaterialDTO.setName("Grava Mejorada");
         updatedMaterialDTO.setPrice(50.0);
         updatedMaterialDTO.setQuantity(20);
 
