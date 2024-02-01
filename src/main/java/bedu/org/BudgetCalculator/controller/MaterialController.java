@@ -2,6 +2,7 @@ package bedu.org.BudgetCalculator.controller;
 
 import bedu.org.BudgetCalculator.dto.material.CreateMaterialDTO;
 import bedu.org.BudgetCalculator.dto.material.MaterialDTO;
+import bedu.org.BudgetCalculator.dto.material.UpdateMaterialDTO;
 import bedu.org.BudgetCalculator.exception.material.MaterialNotFoundException;
 import bedu.org.BudgetCalculator.service.MaterialService;
 import io.swagger.v3.oas.annotations.Operation;
@@ -46,8 +47,8 @@ public class MaterialController {
 
     @Operation(summary = "updating the material")
     @PutMapping("/{id}")
-    @ResponseStatus(HttpStatus.CREATED)
-    public MaterialDTO update(@Valid  @PathVariable Long id, @RequestBody CreateMaterialDTO data) throws MaterialNotFoundException {
+    @ResponseStatus(HttpStatus.OK)
+    public MaterialDTO update(@Valid  @PathVariable Long id, @RequestBody UpdateMaterialDTO data) throws MaterialNotFoundException {
         return materialService.update(id,data);
     }
 
@@ -55,6 +56,6 @@ public class MaterialController {
     @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void delete(@PathVariable Long id) throws MaterialNotFoundException {
-        materialService.delete(id);
+        materialService.deleteById(id);
     }
 }

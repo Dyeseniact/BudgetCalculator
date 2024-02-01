@@ -1,12 +1,8 @@
 package bedu.org.BudgetCalculator.exception.material;
 
-import org.springframework.http.HttpStatus;
-import org.springframework.web.bind.annotation.ResponseStatus;
-
-@ResponseStatus(HttpStatus.NOT_FOUND)
+import bedu.org.BudgetCalculator.exception.RuntimeException;
 public class MaterialNotFoundException extends RuntimeException {
-
     public MaterialNotFoundException(long materialId) {
-        super("Material not found with ID: " + materialId);
+        super("ERR_DATA_NOT_FOUND","Material not found with ID:",materialId);
     }
 }

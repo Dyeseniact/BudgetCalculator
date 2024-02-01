@@ -2,6 +2,7 @@ package bedu.org.BudgetCalculator.advice;
 
 import bedu.org.BudgetCalculator.dto.ErrorDTO;
 import bedu.org.BudgetCalculator.exception.RuntimeException;
+import bedu.org.BudgetCalculator.exception.material.MaterialNotFoundException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.validation.FieldError;
@@ -35,5 +36,11 @@ public class GlobalExceptionHandler {
     public ErrorDTO unknownError(Exception ex) {
         log.error(ex.getMessage());
         return new ErrorDTO("ERR_UNKNOWN", "An unknown error ocurred", null);
+    }
+
+    @ExceptionHandler(MaterialNotFoundException.class)
+    @ResponseStatus(HttpStatus.NOT_FOUND)
+    public ErrorDTO materialNotFound(MaterialNotFoundException ex) {
+        return new ErrorDTO(ex.getCode(), ex.getMessage(), ex.getDetails());
     }
 }

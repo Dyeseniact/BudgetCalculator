@@ -2,6 +2,7 @@ package bedu.org.BudgetCalculator.service;
 
 import bedu.org.BudgetCalculator.dto.material.CreateMaterialDTO;
 import bedu.org.BudgetCalculator.dto.material.MaterialDTO;
+import bedu.org.BudgetCalculator.dto.material.UpdateMaterialDTO;
 import bedu.org.BudgetCalculator.exception.material.MaterialNotFoundException;
 import bedu.org.BudgetCalculator.mapper.MaterialMapper;
 import bedu.org.BudgetCalculator.model.Material;
@@ -29,9 +30,8 @@ public class MaterialService {
     public MaterialDTO findById(Long id) throws MaterialNotFoundException {
         Optional<Material> result = materialRepository.findById(id);
 
-        if(!result.isPresent()) {
-            throw new MaterialNotFoundException(id);
-        }
+        Material material = materialRepository.findById(id)
+                .orElseThrow(() -> new MaterialNotFoundException(id));
 
         return materialMapper.toDTO(result.get());
     }
@@ -41,9 +41,9 @@ public class MaterialService {
         return materialMapper.toDTO(entity);
     }
 
-    public MaterialDTO update(Long id, CreateMaterialDTO data) {
+    public MaterialDTO update(Long id, UpdateMaterialDTO data) throws MaterialNotFoundException {
         Material materialExists = materialRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("No se encontro el material con el ID:  " + id));
+                .orElseThrow(() -> new MaterialNotFoundException(id));
 
         materialExists.setName(data.getName());
         materialExists.setQuantity(data.getQuantity());
@@ -54,12 +54,9 @@ public class MaterialService {
         return materialMapper.toDTO(materialUpdated);
     }
 
-    public void delete(Long id) throws MaterialNotFoundException {
-        Optional<Material> result = materialRepository.findById(id);
-
-        if(!result.isPresent()){
-            throw new MaterialNotFoundException(id);
-        }
+    public void deleteById(Long id) throws MaterialNotFoundException {
+        Material material = materialRepository.findById(id)
+                .orElseThrow(() -> new MaterialNotFoundException(id));
 
         materialRepository.deleteById(id);
     }
