@@ -5,6 +5,7 @@ import bedu.org.budget_calculator.dto.budget.CreateBudgetDTO;
 import bedu.org.budget_calculator.dto.budget.UpdateBudgetDTO;
 import bedu.org.budget_calculator.dto.concept.ConceptDTO;
 import bedu.org.budget_calculator.exception.budget.BudgetNotFoundException;
+import bedu.org.budget_calculator.exception.material.MaterialNotFoundException;
 import bedu.org.budget_calculator.mapper.ConceptMapper;
 import bedu.org.budget_calculator.model.Budget;
 import bedu.org.budget_calculator.model.Concept;
@@ -67,6 +68,32 @@ class BudgetServiceTest {
         assertNotNull(result);
         assertEquals(fakeBudget.getId(),result.get(0).getId());
         assertEquals(fakeBudget.getNameBudget(),result.get(0).getNameBudget());
+    }
+    @Test
+    @DisplayName("BudgetService should find Budget by ID")
+    void findByIdTest() throws BudgetNotFoundException {
+        Budget fakeBudget = new Budget();
+        fakeBudget.setNameBudget("Pruebas bsucar un budget");
+        fakeBudget.setId(14785L);
+        fakeBudget.setStatus(Estatus.PENDIENTE);
+
+        when(budgetRepository.findById(anyLong())).thenReturn(Optional.of(fakeBudget));
+
+        Optional<BudgetDTO> result = budgetService.findById(fakeBudget.getId());
+
+        assertNotNull(result);
+        assertEquals(fakeBudget.getNameBudget(),result.get().getNameBudget());
+        assertEquals(fakeBudget.getTotal(),result.get().getTotal());
+        assertEquals(fakeBudget.getId(),result.get().getId());
+
+    }
+    @Test
+    @DisplayName("BudgetService should find Budget by ID")
+    void NotFindByIdTest() throws BudgetNotFoundException {
+        when(budgetRepository.findById(1965L)).thenReturn(Optional.empty());
+
+        assertThrows(BudgetNotFoundException.class, () -> budgetService.findById(1965L));
+
     }
     @Test
     @DisplayName("budgetService should save a budget in repository")

@@ -124,11 +124,10 @@ public class BudgetControllerE2ETest {
     void budgetNameMissingInRequestBodyTest() throws Exception {
         MvcResult result = mockMvc.perform(post("/budgets").contentType("application/json").content(
                         "{\"customerId\":{ \"id\":1 }," +
-                                "\"total\":10.0,"+
-                                //"\"creationDate\":\"2020-12-02T00:00:49.455\"," +
-                                "\"startDate\":\"2024-12-28\"," +
-                                "\"endDate\":\"2024-12-28\"," +
-                                "\"status\":\"ACTIVO\"}" ))
+                        "\"total\":10.0,"+
+                        "\"startDate\":\"2024-12-28\"," +
+                        "\"endDate\":\"2024-12-28\"," +
+                        "\"status\":\"ACTIVO\"}" ))
                 .andExpect(status().isBadRequest())
                 .andReturn();
 
@@ -143,15 +142,15 @@ public class BudgetControllerE2ETest {
         assertEquals(expectedResponse, content);
     }
     @Test
-    @DisplayName("POST /budgets should return an error if total is missing")
+    @DisplayName("POST /budgets should return an error if startDate is missing")
     void totalMissingInRequestBodyTest() throws Exception {
         MvcResult result = mockMvc.perform(post("/budgets").contentType("application/json").content(
                         "{\"customerId\":{ \"id\":1 }," +
-                                //"\"total\":10.0,"+
-                                "\"nameBudget\":\"Test E2E POST\"," +
-                                "\"startDate\":\"2024-12-28\"," +
-                                "\"endDate\":\"2024-12-28\"," +
-                                "\"status\":\"ACTIVO\"}" ))
+                        "\"total\":10.0,"+
+                        "\"nameBudget\":\"Test E2E POST\"," +
+                        //"\"startDate\":\"2024-12-28\"," +
+                        "\"endDate\":\"2024-12-28\"," +
+                        "\"status\":\"ACTIVO\"}" ))
                 .andExpect(status().isBadRequest())
                 .andReturn();
 
@@ -165,7 +164,7 @@ public class BudgetControllerE2ETest {
 
         List<String> details = (List<String>) response.getDetails();
 
-        assertEquals("El total debe ser mayor a 0", details.get(0));
+        assertEquals("La feha Inicio es obligatoria", details.get(0));
     }
 
     @Test
@@ -173,11 +172,11 @@ public class BudgetControllerE2ETest {
     void CreateBudgetTest() throws Exception {
         MvcResult result = mockMvc.perform(post("/budgets").contentType("application/json").content(
                         "{\"customerId\":{ \"id\":1 }," +
-                                "\"total\":10.0,"+
-                                "\"nameBudget\":\"Test E2E POST\"," +
-                                "\"startDate\":\"2024-12-28\"," +
-                                "\"endDate\":\"2024-12-28\"," +
-                                "\"status\":\"ACTIVO\"}" ))
+                        "\"total\":10.0,"+
+                        "\"nameBudget\":\"Test E2E POST\"," +
+                        "\"startDate\":\"2024-12-28\"," +
+                        "\"endDate\":\"2024-12-28\"," +
+                        "\"status\":\"ACTIVO\"}" ))
                 .andExpect(status().isCreated())
                 .andReturn();
 
@@ -191,11 +190,11 @@ public class BudgetControllerE2ETest {
     void TotalBadDataInRequestBodyTest() throws Exception {
         MvcResult result = mockMvc.perform(patch("/budgets/1").contentType("application/json").content(
                         "{\"customerId\":{ \"id\":1 }," +
-                                "\"total\":0.0,"+
-                                "\"nameBudget\":\"Pruebas 2: Alta para test\"," +
-                                "\"startDate\":\"2024-12-28\"," +
-                                "\"endDate\":\"2024-12-28\"," +
-                                "\"status\":\"ACTIVO\"}" ))
+                        "\"total\":0.0,"+
+                        "\"nameBudget\":\"Pruebas 2: Alta para test\"," +
+                        "\"startDate\":\"2024-12-28\"," +
+                        "\"endDate\":\"2024-12-28\"," +
+                        "\"status\":\"ACTIVO\"}" ))
                 .andExpect(status().isBadRequest())
                 .andReturn();
 
@@ -211,11 +210,11 @@ public class BudgetControllerE2ETest {
     void UpdateNotFoundBudgetTest() throws Exception {
         MvcResult result = mockMvc.perform(patch("/budgets/100").contentType("application/json").content(
                         "{\"customerId\":{ \"id\":1 }," +
-                                "\"total\":1250.0,"+
-                                "\"nameBudget\":\"Pruebas 2: Alta para test\"," +
-                                "\"startDate\":\"2024-12-28\"," +
-                                "\"endDate\":\"2024-12-28\"," +
-                                "\"status\":\"ACTIVO\"}" ))
+                        "\"total\":1250.0,"+
+                        "\"nameBudget\":\"Pruebas 2: Alta para test\"," +
+                        "\"startDate\":\"2024-12-28\"," +
+                        "\"endDate\":\"2024-12-28\"," +
+                        "\"status\":\"ACTIVO\"}" ))
                 .andExpect(status().isNotFound())
                 .andReturn();
 
@@ -246,11 +245,11 @@ public class BudgetControllerE2ETest {
 
         MvcResult result = mockMvc.perform(patch("/budgets/"+fakeBudget1.getId()).contentType("application/json").content(
                         "{\"customerId\":{ \"id\":1 }," +
-                                "\"total\":1250.0,"+
-                                "\"nameBudget\":\"Pruebas 2: Update para test\"," +
-                                "\"startDate\":\"2024-12-28\"," +
-                                "\"endDate\":\"2024-12-28\"," +
-                                "\"status\":\"ACTIVO\"}" ))
+                        "\"total\":1250.0,"+
+                        "\"nameBudget\":\"Pruebas 2: Update para test\"," +
+                        "\"startDate\":\"2024-12-28\"," +
+                        "\"endDate\":\"2024-12-28\"," +
+                        "\"status\":\"ACTIVO\"}" ))
                 .andExpect(status().isNoContent())
                 .andReturn();
 
