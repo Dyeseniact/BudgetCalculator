@@ -27,8 +27,8 @@ class ConceptRepositoryTest {
     @Autowired
     TestEntityManager testEntityManager;
 
-    final LocalDate startDate = LocalDate.of(2024, 02, 8);
-    final LocalDate endDate = LocalDate.of(2024, 02, 18);
+    final LocalDate startDate = LocalDate.of(2024, 2, 8);
+    final LocalDate endDate = LocalDate.of(2024, 2, 18);
 
     @Test
     @DisplayName("Injected")

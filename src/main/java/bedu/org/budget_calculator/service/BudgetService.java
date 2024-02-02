@@ -87,8 +87,9 @@ public class BudgetService {
     public double calculatorTotalBudget(Long id){
         List<ConceptDTO> listConcepts = conceptMapper.toDTO(conceptRepository.findsConceptsByBudgetId(id));
         double total=0;
-        for (int i =0 ; i<listConcepts.size();i++){
-            total=total +listConcepts.get(i).getSubtotal();
+
+        for (ConceptDTO l1:listConcepts   ) {
+            total+= l1.getSubtotal();
         }
         return total;
     }

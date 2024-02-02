@@ -1,8 +1,6 @@
 package bedu.org.budget_calculator.repository;
 
 import bedu.org.budget_calculator.model.Budget;
-import bedu.org.budget_calculator.model.Client;
-import bedu.org.budget_calculator.model.Estatus;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -27,12 +25,6 @@ import static org.mockito.Mockito.when;
 class BudgetRepositoryTest {
     @MockBean
     BudgetRepository budgetRepository;
-    @Autowired
-    private TestEntityManager testEntityManager;
-
-    final LocalDate endDate = LocalDate.of(2024,02,22);
-    final LocalDate startDate = LocalDate.of(2024,02,2);
-
 
     @Test
     @DisplayName("Repository should be injected")

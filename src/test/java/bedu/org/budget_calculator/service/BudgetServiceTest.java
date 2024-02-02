@@ -5,7 +5,6 @@ import bedu.org.budget_calculator.dto.budget.CreateBudgetDTO;
 import bedu.org.budget_calculator.dto.budget.UpdateBudgetDTO;
 import bedu.org.budget_calculator.dto.concept.ConceptDTO;
 import bedu.org.budget_calculator.exception.budget.BudgetNotFoundException;
-import bedu.org.budget_calculator.exception.material.MaterialNotFoundException;
 import bedu.org.budget_calculator.mapper.ConceptMapper;
 import bedu.org.budget_calculator.model.Budget;
 import bedu.org.budget_calculator.model.Concept;
@@ -216,8 +215,8 @@ class BudgetServiceTest {
         when(conceptRepository.findsConceptsByBudgetId(anyLong())).thenReturn(fakeList);
 
         List<ConceptDTO> listConcepts = conceptMapper.toDTO(conceptRepository.findsConceptsByBudgetId(id));
-        for (int i =0 ; i<listConcepts.size();i++){
-            total=total +listConcepts.get(i).getSubtotal();
+        for (ConceptDTO l1:listConcepts   ) {
+            total+= l1.getSubtotal();
         }
         assertNotNull(listConcepts);
         assertTrue(total>=0);

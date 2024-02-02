@@ -44,8 +44,8 @@ public class BudgetControllerE2ETest {
 
 
     private ObjectMapper objectMapper = new ObjectMapper().registerModule(new JavaTimeModule());
-    final LocalDate endDate = LocalDate.of(2024,02,22);
-    final LocalDate startDate = LocalDate.of(2024,02,2);
+    final LocalDate endDate = LocalDate.of(2024,2,22);
+    final LocalDate startDate = LocalDate.of(2024,2,2);
 
 
     @BeforeEach
@@ -181,7 +181,7 @@ public class BudgetControllerE2ETest {
                 .andReturn();
 
         String content = result.getResponse().getContentAsString();
-
+        System.out.println(content);
         assertEquals(201,result.getResponse().getStatus());
     }
 
@@ -254,7 +254,7 @@ public class BudgetControllerE2ETest {
                 .andReturn();
 
         String content = result.getResponse().getContentAsString();
-
+        System.out.println(content);
         assertEquals(204,result.getResponse().getStatus());
     }
 
