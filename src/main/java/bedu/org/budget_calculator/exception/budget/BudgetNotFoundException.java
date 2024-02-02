@@ -4,6 +4,6 @@ import bedu.org.budget_calculator.exception.RuntimeException;
 
 public class BudgetNotFoundException extends RuntimeException {
     public BudgetNotFoundException(Long id) {
-        super("ERR_DATA_NOT_FOUND", "No se encpntro el presuuesto especificado", id);
+        super("ERR_BUDGET_NOT_FOUND", "No se encontró el presupuesto.", id);
     }
 }

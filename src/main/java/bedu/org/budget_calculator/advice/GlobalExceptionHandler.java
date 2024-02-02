@@ -1,5 +1,6 @@
 package bedu.org.budget_calculator.advice;
 
+import bedu.org.budget_calculator.exception.budget.BudgetNotFoundException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.validation.FieldError;
@@ -42,6 +43,11 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(MaterialNotFoundException.class)
     @ResponseStatus(HttpStatus.NOT_FOUND)
     public ErrorDTO materialNotFound(MaterialNotFoundException ex) {
+        return new ErrorDTO(ex.getCode(), ex.getMessage(), ex.getDetails());
+    }
+    @ExceptionHandler(BudgetNotFoundException.class)
+    @ResponseStatus(HttpStatus.NOT_FOUND)
+    public ErrorDTO budgetNotFound(BudgetNotFoundException ex) {
         return new ErrorDTO(ex.getCode(), ex.getMessage(), ex.getDetails());
     }
 }

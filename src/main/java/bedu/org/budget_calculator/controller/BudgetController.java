@@ -49,7 +49,7 @@ public class BudgetController {
 
     @Operation(summary = "updating the budget")
     @PatchMapping("{id}")
-    @ResponseStatus(HttpStatus.CREATED)
+    @ResponseStatus(HttpStatus.NO_CONTENT)
     public BudgetDTO update(@PathVariable Long id, @Valid @RequestBody UpdateBudgetDTO data) throws BudgetNotFoundException {
         log.info("Actualziando presupuesto");
         log.info(data.toString());

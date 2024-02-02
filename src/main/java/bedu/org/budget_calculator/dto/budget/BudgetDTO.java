@@ -41,15 +41,15 @@ public class BudgetDTO {
 
     @Schema(description = "If the budget is currently active", example = "true"
     )
-    private boolean Active;
+    private boolean active;
 
     @Schema(description = "If the budget was generated", example = "true"
     )
-    private boolean Generated;
+    private boolean generated;
 
     @Schema(description = "iIf the budget was accepted", example = "true"
     )
-    private boolean Accepted;
+    private boolean accepted;
 
 
 }

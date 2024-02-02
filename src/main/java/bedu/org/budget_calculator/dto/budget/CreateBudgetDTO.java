@@ -27,19 +27,18 @@ public class CreateBudgetDTO {
     @Schema(description = "Total of the budget", example = "2500.00"
     )
     @PositiveOrZero(message = "El total debe ser positivo")
-    @DecimalMin(value = "1.0000",message = "El total debe ser mayor a 0")
     private double total;
 
     @Schema(description = "Day the budget was created", example = "2024-01-01"
     )
-    @NotNull(message = "La feha inicio es obligatoria")
-    @FutureOrPresent(message = "La fecha inicio debe ser igual o mayor a hoy.")
+    @NotNull(message = "La feha Inicio es obligatoria")
+    @FutureOrPresent(message = "La fecha Inicio debe ser igual o mayor a hoy.")
     private LocalDate startDate;
 
     @Schema(description = "Day the activities end", example = "2024-04-04"
     )
-    @NotNull(message = "La fecha fin es obligatoria")
-    @Future(message = "La fecha fin debe ser mayor a hoy")
+    @NotNull(message = "La fecha Fin es obligatoria")
+    @Future(message = "La fecha Fin debe ser mayor a hoy")
     private LocalDate endDate;
 
     @Schema(description = "Status of the budget", example = "ACTIVO"
@@ -49,14 +48,14 @@ public class CreateBudgetDTO {
 
     @Schema(description = "If the budget is currently active", example = "true"
     )
-    private boolean Active;
+    private boolean active;
 
     @Schema(description = "If the budget was generated", example = "true"
     )
-    private boolean Generated;
+    private boolean generated;
 
     @Schema(description = "If the budget was accepted", example = "true"
     )
-    private boolean Accepted;
+    private boolean accepted;
 
 }

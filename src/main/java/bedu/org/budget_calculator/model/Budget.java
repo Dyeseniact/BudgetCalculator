@@ -35,11 +35,11 @@ public class Budget {
     @Column(nullable = false)
     private Estatus status;
     @Column(name = "is_Active")
-    private boolean Active;
+    private boolean active;
     @Column(name = "is_Generated")
-    private boolean Generated;
+    private boolean generated;
     @Column(name = "is_Accepted")
-    private boolean Accepted;
+    private boolean accepted;
 
 
 

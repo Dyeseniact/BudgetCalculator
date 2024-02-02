@@ -27,12 +27,12 @@ public class UpdateBudgetDTO {
 
     @Schema(description = "Day activities begin", example = "2023-12-12"
     )
-    @FutureOrPresent(message = "La fecha inicio debe ser mayor o igual a hoy.")
+    @FutureOrPresent(message = "La fecha Inicio debe ser mayor o igual a hoy.")
     private LocalDate startDate;
 
     @Schema(description = "Day the activities end", example = "2024-04-04"
     )
-    @Future(message = "La fecha fin debe ser mayor a hoy")
+    @Future(message = "La fecha Fin debe ser mayor a hoy")
     private LocalDate endDate;
 
     @Schema(description = "Status of the budget", example = "ACTIVO"
@@ -41,13 +41,13 @@ public class UpdateBudgetDTO {
 
     @Schema(description = "If the budget is currently active", example = "true"
     )
-    private boolean Active;
+    private boolean active;
 
     @Schema(description = "If the budget was generated", example = "true"
     )
-    private boolean Generated;
+    private boolean generated;
 
     @Schema(description = "If the budget was accepted", example = "true"
     )
-    private boolean Accepted;
+    private boolean accepted;
 }

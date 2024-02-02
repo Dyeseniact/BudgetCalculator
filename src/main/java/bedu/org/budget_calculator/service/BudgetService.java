@@ -27,9 +27,9 @@ public class BudgetService {
     private BudgetMapper budgetMapper;
 
     @Autowired
-    private ConceptRepository conceptoRepository;
+    private ConceptRepository conceptRepository;
     @Autowired
-    private ConceptMapper conceptoMapper;
+    private ConceptMapper conceptMapper;
 
     public List<BudgetDTO> findAll(){
 
@@ -75,16 +75,22 @@ public class BudgetService {
 
         Budget budget = resultBudget.get();
 
-        List<ConceptDTO> listado = conceptoMapper.toDTO(conceptoRepository.findsConceptsByBudgetId(id));
-        double total=0;
-        for (int i =0 ; i<listado.size();i++){
-           total=total +listado.get(i).getSubtotal();
-        }
+        double total = calculatorTotalBudget(id);
         data.setTotal(total);
         budgetMapper.update(budget,data);
         budgetRepository.save(budget);
 
         return budgetMapper.toDTO(budget);
+    }
+
+    //SE REFACTORIZO, SE SEPARO DEL UPDATE
+    public double calculatorTotalBudget(Long id){
+        List<ConceptDTO> listConcepts = conceptMapper.toDTO(conceptRepository.findsConceptsByBudgetId(id));
+        double total=0;
+        for (int i =0 ; i<listConcepts.size();i++){
+            total=total +listConcepts.get(i).getSubtotal();
+        }
+        return total;
     }
 
 }
