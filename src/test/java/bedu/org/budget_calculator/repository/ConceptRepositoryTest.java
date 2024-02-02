@@ -93,7 +93,7 @@ class ConceptRepositoryTest {
 
         List<Concept> result = conceptRepository.findsConceptsByBudgetId(budget.getId());
 
-        assertTrue(result.size() == 3);
+        assertEquals( 3,result.size());
 
     }
 }

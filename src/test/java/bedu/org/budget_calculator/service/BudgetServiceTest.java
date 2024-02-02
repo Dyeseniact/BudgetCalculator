@@ -46,7 +46,7 @@ class BudgetServiceTest {
 
     @Test
     @DisplayName("budgetService should be inject")
-    public void smokeTest(){
+    void smokeTest(){
         assertNotNull(budgetService);
     }
 

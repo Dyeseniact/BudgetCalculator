@@ -13,7 +13,7 @@ import java.util.List;
 public interface ConceptMapper {
     ConceptDTO toDTO(Concept model);
     @Mapping(target = "id", ignore = true)
-    Concept toModel(CreateConceptDTO DTO);
+    Concept toModel(CreateConceptDTO dto);
 
     @Mapping(target = "id", ignore = true)
     @Mapping(target = "budgetId",ignore = true)

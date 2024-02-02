@@ -13,7 +13,7 @@ public interface BudgetMapper {
 
     @Mapping(target = "id",ignore = true)
     @Mapping(target = "creationDate", ignore = true)
-    Budget toModel(CreateBudgetDTO DTO);
+    Budget toModel(CreateBudgetDTO dto);
     @Mapping(target = "id",ignore = true)
     @Mapping(target = "creationDate", ignore = true)
     void update(@MappingTarget Budget budget, UpdateBudgetDTO data);

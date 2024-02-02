@@ -48,7 +48,7 @@ class BudgetRepositoryTest {
         when(budgetRepository.findByBudgetNameContaining(anyString())).thenReturn(fakeList);
 
         List<Budget> result = budgetRepository.findByBudgetNameContaining("nombre");
-        assertTrue(result.size()==2);
+        assertEquals(2,result.size());
         assertEquals(budget1.getNameBudget(),result.get(0).getNameBudget());
         assertEquals(budget2.getNameBudget(),result.get(1).getNameBudget());
 

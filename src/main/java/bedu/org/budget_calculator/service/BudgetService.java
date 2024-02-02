@@ -20,16 +20,28 @@ import java.util.Optional;
 
 @Service
 public class BudgetService {
-    @Autowired
+
     private BudgetRepository budgetRepository;
-
-    @Autowired
     private BudgetMapper budgetMapper;
+    private ConceptRepository conceptRepository;
+    private ConceptMapper conceptMapper;
 
     @Autowired
-    private ConceptRepository conceptRepository;
+    public BudgetService(BudgetRepository budgetRepository) {
+        this.budgetRepository = budgetRepository;
+    }
     @Autowired
-    private ConceptMapper conceptMapper;
+    public BudgetService(BudgetMapper budgetMapper) {
+        this.budgetMapper = budgetMapper;
+    }
+    @Autowired
+    public BudgetService(ConceptRepository conceptRepository) {
+        this.conceptRepository = conceptRepository;
+    }
+    @Autowired
+    public BudgetService(ConceptMapper conceptMapper) {
+        this.conceptMapper = conceptMapper;
+    }
 
     public List<BudgetDTO> findAll(){
 

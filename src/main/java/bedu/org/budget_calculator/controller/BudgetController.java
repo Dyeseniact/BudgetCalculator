@@ -22,8 +22,13 @@ import java.util.Optional;
 @Slf4j
 @RequestMapping("budgets")
 public class BudgetController {
-    @Autowired
+
     private BudgetService budgetService;
+
+    @Autowired
+    public BudgetController(BudgetService budgetService) {
+        this.budgetService = budgetService;
+    }
 
     @Operation(summary = "get the budget")
     @GetMapping

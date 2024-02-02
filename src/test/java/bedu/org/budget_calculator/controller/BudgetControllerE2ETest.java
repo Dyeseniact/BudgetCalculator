@@ -34,7 +34,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @ExtendWith(SpringExtension.class)
 @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
 @SpringBootTest
-public class BudgetControllerE2ETest {
+class BudgetControllerE2ETest {
     @Autowired
     private MockMvc mockMvc;
     @Autowired
@@ -108,7 +108,7 @@ public class BudgetControllerE2ETest {
         List<BudgetDTO> response = objectMapper.readValue(content, listTypeReference);
 
         // Hacemos las verificaciones basadas en los objetos
-        assertTrue(response.size() == 2);
+        assertEquals(2,response.size());
         assertEquals(fakeBudget1.getNameBudget(),response.get(0).getNameBudget());
         assertEquals(fakeBudget1.getStatus(),response.get(0).getStatus());
         assertEquals(fakeBudget1.getTotal(),response.get(0).getTotal());
