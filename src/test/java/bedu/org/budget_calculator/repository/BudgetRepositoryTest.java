@@ -5,8 +5,10 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.junit.jupiter.MockitoExtension;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
+import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
 import org.springframework.boot.test.mock.mockito.MockBean;
 
 import java.util.LinkedList;
@@ -22,15 +24,17 @@ import static org.mockito.Mockito.when;
 class BudgetRepositoryTest {
     @MockBean
     BudgetRepository budgetRepository;
+    @Autowired
+    private TestEntityManager manager;
 
     @Test
-    @DisplayName("Repository should be injected")
+    @DisplayName("budgetRepository should be injected")
     void smokeTest(){
         assertNotNull(budgetRepository);
     }
 
     @Test
-    @DisplayName("BudgetRepository should filter Budgets by budgetName")
+    @DisplayName("budgetRepository should filter Budgets by budgetName")
     void findByBudgetNameTest(){
         Budget budget1 = new Budget();
         budget1.setNameBudget("Busqueda por nombre 1");

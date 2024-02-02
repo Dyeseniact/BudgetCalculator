@@ -27,19 +27,10 @@ public class BudgetService {
     private ConceptMapper conceptMapper;
 
     @Autowired
-    public BudgetService(BudgetRepository budgetRepository) {
+    public BudgetService(BudgetRepository budgetRepository, BudgetMapper budgetMapper, ConceptRepository conceptRepository, ConceptMapper conceptMapper) {
         this.budgetRepository = budgetRepository;
-    }
-    @Autowired
-    public BudgetService(BudgetMapper budgetMapper) {
         this.budgetMapper = budgetMapper;
-    }
-    @Autowired
-    public BudgetService(ConceptRepository conceptRepository) {
         this.conceptRepository = conceptRepository;
-    }
-    @Autowired
-    public BudgetService(ConceptMapper conceptMapper) {
         this.conceptMapper = conceptMapper;
     }
 
