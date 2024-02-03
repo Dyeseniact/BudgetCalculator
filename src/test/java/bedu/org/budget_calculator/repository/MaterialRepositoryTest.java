@@ -1,8 +1,6 @@
 package bedu.org.budget_calculator.repository;
 
 import bedu.org.budget_calculator.model.Material;
-import bedu.org.budget_calculator.repository.MaterialRepository;
-
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
