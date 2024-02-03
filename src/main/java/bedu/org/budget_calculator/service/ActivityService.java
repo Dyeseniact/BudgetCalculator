@@ -42,7 +42,7 @@ public class ActivityService {
         return activityMapper.toDTO(entity);
     }
 
-    public void update(Long id, UpdateActivityDTO data) throws ActivityNotFoundException {
+    public ActivityDTO update(Long id, UpdateActivityDTO data) throws ActivityNotFoundException {
         Optional<Activity> result = activityRepository.findById(id);
 
         if(!result.isPresent()){
@@ -50,8 +50,12 @@ public class ActivityService {
         }
 
         Activity activity = result.get();
-        activityMapper.update(activity, data);
-        activityRepository.save(activity);
+        activity.setName(data.getName());
+        activity.setUnit(data.getUnit());
+
+        Activity updated = activityRepository.save(activity);
+
+        return activityMapper.toDTO(updated);
     }
 
     public void delete(Long id) throws ActivityNotFoundException {

@@ -50,19 +50,20 @@ public class ActivityController {
         return activityService.save(data);
     }
 
-    @Operation(summary = "updating the budget")
+    @Operation(summary = "updating activity by the ID")
     @PatchMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void update(@PathVariable Long id, @RequestBody UpdateActivityDTO data) throws ActivityNotFoundException, ValidationException {
+    public ActivityDTO update(@PathVariable Long id, @RequestBody UpdateActivityDTO data) throws ActivityNotFoundException, ValidationException {
         if (data.getName() != null && data.getName().isEmpty()) {
             throw new ValidationException("Name cannot be empty");
         }
         if (data.getUnit() != null && data.getUnit().isEmpty()) {
             throw new ValidationException("Unit cannot be empty");
         }
-        activityService.update(id, data);
+        return activityService.update(id, data);
+
     }
-    @Operation(summary = "deleting the budget")
+    @Operation(summary = "deleting activity by the ID")
     @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void delete(@PathVariable Long id) throws ActivityNotFoundException {
