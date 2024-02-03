@@ -1,5 +1,6 @@
 package bedu.org.budget_calculator.advice;
 
+import bedu.org.budget_calculator.exception.activity.ActivityNotFoundException;
 import bedu.org.budget_calculator.exception.budget.BudgetNotFoundException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
@@ -48,6 +49,12 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(BudgetNotFoundException.class)
     @ResponseStatus(HttpStatus.NOT_FOUND)
     public ErrorDTO budgetNotFound(BudgetNotFoundException ex) {
+        return new ErrorDTO(ex.getCode(), ex.getMessage(), ex.getDetails());
+    }
+
+    @ExceptionHandler(ActivityNotFoundException.class)
+    @ResponseStatus(HttpStatus.NOT_FOUND)
+    public ErrorDTO activityNotFound(ActivityNotFoundException ex) {
         return new ErrorDTO(ex.getCode(), ex.getMessage(), ex.getDetails());
     }
 }
