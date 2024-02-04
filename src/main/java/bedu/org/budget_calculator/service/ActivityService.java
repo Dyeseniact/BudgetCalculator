@@ -17,11 +17,19 @@ import java.util.Optional;
 @Service
 public class ActivityService {
 
-    @Autowired
     private ActivityRepository activityRepository;
 
     @Autowired
+    public ActivityService(ActivityRepository activityRepository){
+        this.activityRepository = activityRepository;
+    }
+
     private ActivityMapper activityMapper;
+
+    @Autowired
+    public ActivityService(ActivityMapper activityMapper){
+        this.activityMapper = activityMapper;
+    }
 
     public List<ActivityDTO> findAll(){
         return activityMapper.toDTO(activityRepository.findAll());

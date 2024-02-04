@@ -25,6 +25,7 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 
 import bedu.org.budget_calculator.dto.client.ClientDTO;
 import bedu.org.budget_calculator.dto.client.CreateClientDTO;
+import bedu.org.budget_calculator.dto.client.UpdateClientDTO;
 import bedu.org.budget_calculator.exception.client.ClientNotFoundException;
 import bedu.org.budget_calculator.model.Client;
 import bedu.org.budget_calculator.repository.ClientRepository;
@@ -166,7 +167,7 @@ class ClientServiceTest {
         Long clientId = 1L;
 
         // Mocking repository data
-        CreateClientDTO updateData = new CreateClientDTO();
+        UpdateClientDTO updateData = new UpdateClientDTO();
         updateData.setName("UpdatedName");
         updateData.setLastname("UpdatedLastname");
         updateData.setEmail("updated.email@example.com");
@@ -207,7 +208,7 @@ class ClientServiceTest {
     @Test
     @DisplayName("Service should throw an error if client was not found")
     void updateWithErrorTest() {
-        CreateClientDTO dto = new CreateClientDTO();
+        UpdateClientDTO dto = new UpdateClientDTO();
         Optional<Client> dummy = Optional.empty();
 
         when(repository.findById(anyLong())).thenReturn(dummy);
@@ -233,10 +234,10 @@ class ClientServiceTest {
         when(repository.findById(clientId)).thenReturn(Optional.of(existingClient));
 
         // Actual test
-        assertDoesNotThrow(() -> service.delete(clientId));
+        assertDoesNotThrow(() -> service.deleteById(clientId));
 
         // Verificar que el método delete del repositorio se haya llamado con el cliente existente
-        verify(repository, times(1)).delete(existingClient);
+        verify(repository, times(1)).deleteById(clientId);
     }
 
     @Test
@@ -249,9 +250,9 @@ class ClientServiceTest {
         when(repository.findById(clientId)).thenReturn(Optional.empty());
 
         // Actual test
-        assertThrows(ClientNotFoundException.class, () -> service.delete(clientId));
+        assertThrows(ClientNotFoundException.class, () -> service.deleteById(clientId));
 
         // Check that delete method is never invoke
-        verify(repository, never()).delete(any(Client.class));
+        verify(repository, never()).deleteById(anyLong());
     }
 }

@@ -2,7 +2,6 @@ package bedu.org.budget_calculator.exception;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
-
 import java.util.Collections;
 
 import org.junit.jupiter.api.DisplayName;
@@ -16,9 +15,7 @@ public class RuntimeExceptionTest {
         Object details = Collections.singletonMap("key", "value");
 
         // Create RuntimeException
-        RuntimeException exception = new RuntimeException(null, "An error occurred", null);
-        exception.setCode("ERR_RUNTIME");
-        exception.setDetails(details);
+        RuntimeException exception = new RuntimeException("ERR_RUNTIME", "An error occurred", details);
 
         // Verify the exception properties
         assertNotNull(exception);

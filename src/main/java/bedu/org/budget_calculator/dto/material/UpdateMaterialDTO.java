@@ -8,7 +8,7 @@ public class UpdateMaterialDTO {
     )
     private String name;
 
-@Schema(description = "quantity of material", example = "10"
+    @Schema(description = "quantity of material", example = "10"
     )
     private int quantity;
 

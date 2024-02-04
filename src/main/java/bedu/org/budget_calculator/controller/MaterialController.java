@@ -22,8 +22,12 @@ import java.util.List;
 @Validated
 public class MaterialController {
 
-    @Autowired
     private MaterialService materialService;
+
+    @Autowired
+    public MaterialController(MaterialService materialService) {
+        this.materialService = materialService;
+    }
 
     @Operation(summary = "get the material")
     @GetMapping

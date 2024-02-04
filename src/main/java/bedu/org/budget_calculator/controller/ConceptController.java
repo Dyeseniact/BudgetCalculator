@@ -22,8 +22,13 @@ import java.util.Optional;
 @Slf4j
 @RequestMapping("concepts")
 public class ConceptController {
-    @Autowired
+
     private ConceptService conceptoService;
+
+    @Autowired
+    public ConceptController(ConceptService conceptoService) {
+        this.conceptoService = conceptoService;
+    }
 
     @Operation(summary = "get the concept")
     @GetMapping

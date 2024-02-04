@@ -2,6 +2,9 @@ package bedu.org.budget_calculator.advice;
 
 import bedu.org.budget_calculator.exception.activity.ActivityNotFoundException;
 import bedu.org.budget_calculator.exception.budget.BudgetNotFoundException;
+import bedu.org.budget_calculator.exception.client.ClientNotFoundException;
+import bedu.org.budget_calculator.exception.material.MaterialNotFoundException;
+
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.validation.FieldError;
@@ -12,7 +15,7 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 
 import bedu.org.budget_calculator.dto.ErrorDTO;
 import bedu.org.budget_calculator.exception.RuntimeException;
-import bedu.org.budget_calculator.exception.material.MaterialNotFoundException;
+
 
 import java.util.List;
 
@@ -46,6 +49,7 @@ public class GlobalExceptionHandler {
     public ErrorDTO materialNotFound(MaterialNotFoundException ex) {
         return new ErrorDTO(ex.getCode(), ex.getMessage(), ex.getDetails());
     }
+    
     @ExceptionHandler(BudgetNotFoundException.class)
     @ResponseStatus(HttpStatus.NOT_FOUND)
     public ErrorDTO budgetNotFound(BudgetNotFoundException ex) {
@@ -55,6 +59,12 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(ActivityNotFoundException.class)
     @ResponseStatus(HttpStatus.NOT_FOUND)
     public ErrorDTO activityNotFound(ActivityNotFoundException ex) {
+        return new ErrorDTO(ex.getCode(), ex.getMessage(), ex.getDetails());
+    }
+
+    @ExceptionHandler(ClientNotFoundException.class)
+    @ResponseStatus(HttpStatus.NOT_FOUND)
+    public ErrorDTO clientNotFound(ClientNotFoundException ex) {
         return new ErrorDTO(ex.getCode(), ex.getMessage(), ex.getDetails());
     }
 }

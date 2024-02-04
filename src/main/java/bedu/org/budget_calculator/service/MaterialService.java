@@ -30,11 +30,12 @@ public class MaterialService {
 
     public MaterialDTO findById(Long id) throws MaterialNotFoundException {
         Optional<Material> result = materialRepository.findById(id);
-
-        Material material = materialRepository.findById(id)
-                .orElseThrow(() -> new MaterialNotFoundException(id));
-
-        return materialMapper.toDTO(result.get());
+        
+        if (result.isPresent()) {
+            return materialMapper.toDTO(result.get());
+        } else {
+            throw new MaterialNotFoundException(id);
+        }
     }
 
     public MaterialDTO save(CreateMaterialDTO data) {

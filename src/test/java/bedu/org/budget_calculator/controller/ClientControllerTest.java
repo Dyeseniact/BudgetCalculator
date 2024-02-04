@@ -22,6 +22,8 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 
 import bedu.org.budget_calculator.dto.client.ClientDTO;
 import bedu.org.budget_calculator.dto.client.CreateClientDTO;
+import bedu.org.budget_calculator.dto.client.UpdateClientDTO;
+import bedu.org.budget_calculator.exception.ValidationException;
 import bedu.org.budget_calculator.exception.client.ClientNotFoundException;
 import bedu.org.budget_calculator.service.ClientService;
 
@@ -97,7 +99,7 @@ class ClientControllerTest {
     // Create a new client
     @Test
     @DisplayName("Controller should save a new client")
-    void saveTest() {
+    void saveTest() throws ValidationException {
 
         CreateClientDTO dto = new CreateClientDTO();
 
@@ -132,7 +134,7 @@ class ClientControllerTest {
 
         Long clientId = 999L;
 
-        CreateClientDTO updateData = new CreateClientDTO();
+        UpdateClientDTO updateData = new UpdateClientDTO();
         updateData.setName("UpdatedName");
 
         ClientDTO fakeClient = new ClientDTO();
@@ -157,7 +159,7 @@ class ClientControllerTest {
 
         controller.deleteCliente(clientId);
 
-        verify(service, times(1)).delete(clientId);
+        verify(service, times(1)).deleteById(clientId);
     }
 
 }

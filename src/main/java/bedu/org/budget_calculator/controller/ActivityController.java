@@ -22,8 +22,12 @@ import java.util.List;
 @RequestMapping("activity")
 public class ActivityController {
 
-    @Autowired
     private ActivityService activityService;
+
+    @Autowired
+    public ActivityController(ActivityService activityService) {
+        this.activityService = activityService;
+    }
 
     @Operation(summary = "get the activity")
     @GetMapping
