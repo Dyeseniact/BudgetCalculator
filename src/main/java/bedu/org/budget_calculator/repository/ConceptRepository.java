@@ -13,4 +13,7 @@ public interface ConceptRepository extends JpaRepository<Concept,Long> {
 
     @Query(value = "SELECT * FROM concepts c WHERE c.budget_id= :budgetId",nativeQuery = true)
     List<Concept> findsConceptsByBudgetId(Long budgetId);
+
+    @Query(value = "SELECT SUM(c.subtotal) FROM concepts c WHERE c.budget_id= :budgetId", nativeQuery = true)
+    Double sumSubtotalByBudgetId(Long budgetId);
 }

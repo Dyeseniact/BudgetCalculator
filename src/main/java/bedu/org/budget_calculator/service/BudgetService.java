@@ -7,10 +7,8 @@ import org.springframework.stereotype.Service;
 import bedu.org.budget_calculator.dto.budget.BudgetDTO;
 import bedu.org.budget_calculator.dto.budget.CreateBudgetDTO;
 import bedu.org.budget_calculator.dto.budget.UpdateBudgetDTO;
-import bedu.org.budget_calculator.dto.concept.ConceptDTO;
 import bedu.org.budget_calculator.exception.budget.BudgetNotFoundException;
 import bedu.org.budget_calculator.mapper.BudgetMapper;
-import bedu.org.budget_calculator.mapper.ConceptMapper;
 import bedu.org.budget_calculator.model.Budget;
 import bedu.org.budget_calculator.repository.BudgetRepository;
 import bedu.org.budget_calculator.repository.ConceptRepository;
@@ -24,14 +22,13 @@ public class BudgetService {
     private BudgetRepository budgetRepository;
     private BudgetMapper budgetMapper;
     private ConceptRepository conceptRepository;
-    private ConceptMapper conceptMapper;
 
     @Autowired
-    public BudgetService(BudgetRepository budgetRepository, BudgetMapper budgetMapper, ConceptRepository conceptRepository, ConceptMapper conceptMapper) {
+    public BudgetService(BudgetRepository budgetRepository, BudgetMapper budgetMapper, ConceptRepository conceptRepository) {
         this.budgetRepository = budgetRepository;
         this.budgetMapper = budgetMapper;
         this.conceptRepository = conceptRepository;
-        this.conceptMapper = conceptMapper;
+
     }
 
     public List<BudgetDTO> findAll(){
@@ -88,12 +85,12 @@ public class BudgetService {
 
     //SE REFACTORIZO, SE SEPARO DEL UPDATE
     public double calculatorTotalBudget(Long id){
-        List<ConceptDTO> listConcepts = conceptMapper.toDTO(conceptRepository.findsConceptsByBudgetId(id));
-        double total=0;
+        double total =0 ;
 
-        for (ConceptDTO l1:listConcepts   ) {
-            total+= l1.getSubtotal();
+        if (conceptRepository.sumSubtotalByBudgetId(id) != null){
+            total=conceptRepository.sumSubtotalByBudgetId(id);
         }
+
         return total;
     }
 

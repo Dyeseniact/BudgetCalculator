@@ -18,16 +18,14 @@ import java.util.Optional;
 public class MaterialService {
 
     private MaterialRepository materialRepository;
-
-    @Autowired
-    public MaterialService(MaterialRepository materialRepository) {
-        this.materialRepository = materialRepository;
-    }
-
     private MaterialMapper materialMapper;
 
+
+    //  Error creating bean with name 'activityController' - Al tener un constructor por inyección.
+    //  Se corrige unificado todos en un mismo constructor.
     @Autowired
-    public MaterialService(MaterialMapper materialMapper){
+    public MaterialService(MaterialRepository materialRepository, MaterialMapper materialMapper) {
+        this.materialRepository = materialRepository;
         this.materialMapper = materialMapper;
     }
 

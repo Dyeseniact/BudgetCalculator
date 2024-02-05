@@ -18,36 +18,34 @@ import java.util.Optional;
 @Service
 public class ConceptService {
 
-    private ConceptMapper conceptoMapper;
+    private ConceptMapper conceptMapper;
+    private ConceptRepository conceptRepository;
 
+
+    //  Error creating bean with name 'activityController' - Al tener un constructor por inyección.
+    //  Se corrige unificado todos en un mismo constructor.
     @Autowired
-    public ConceptService(ConceptMapper conceptoMapper) {
-        this.conceptoMapper = conceptoMapper;
-    }
-
-    private ConceptRepository conceptoRepository;
-
-    @Autowired
-    public ConceptService(ConceptRepository conceptoRepository) {
-        this.conceptoRepository = conceptoRepository;
+    public ConceptService(ConceptMapper conceptMapper, ConceptRepository conceptRepository) {
+        this.conceptMapper = conceptMapper;
+        this.conceptRepository = conceptRepository;
     }
 
     public List<ConceptDTO> findAll(){
-        return conceptoRepository
+        return conceptRepository
                 .findAll()
                 .stream()
-                .map(conceptoMapper::toDTO)
+                .map(conceptMapper::toDTO)
                 .toList()
         ;
     }
     public Optional<ConceptDTO> findById(Long id) throws ConceptNotFoundException {
-        Optional<Concept> resultConcept = conceptoRepository.findById(id);
+        Optional<Concept> resultConcept = conceptRepository.findById(id);
         if (!resultConcept.isPresent()){
             throw new ConceptNotFoundException(id);
         }
         return resultConcept
                 .stream()
-                .map(conceptoMapper::toDTO)
+                .map(conceptMapper::toDTO)
                 .findFirst()
                 ;
     }
@@ -55,13 +53,13 @@ public class ConceptService {
     @Transactional
     public ConceptDTO save(CreateConceptDTO data){
         data.setSubtotal(data.getQuantity()*data.getUnitPrice());
-        Concept entity = conceptoRepository
-                .save(conceptoMapper.toModel(data));
-        return conceptoMapper.toDTO(entity)       ;
+        Concept entity = conceptRepository
+                .save(conceptMapper.toModel(data));
+        return conceptMapper.toDTO(entity)       ;
     }
     @Transactional
     public void update(Long id, UpdateConceptDTO data) throws ConceptNotFoundException {
-        Optional<Concept> resultConcept = conceptoRepository.findById(id);
+        Optional<Concept> resultConcept = conceptRepository.findById(id);
         if (!resultConcept.isPresent()){
             throw new ConceptNotFoundException(id);
         }
@@ -69,20 +67,20 @@ public class ConceptService {
         data.setSubtotal(data.getQuantity()*data.getUnitPrice());
 
         // Actualizar el Concepto en la base de datos
-        conceptoMapper.update(concept,data);
-        conceptoRepository.save(concept);
+        conceptMapper.update(concept,data);
+        conceptRepository.save(concept);
     }
 
     public void deleteById(Long id) throws ConceptNotFoundException {
-        Optional<Concept> resultConcept = conceptoRepository.findById(id);
+        Optional<Concept> resultConcept = conceptRepository.findById(id);
         if (!resultConcept.isPresent()){
             throw new ConceptNotFoundException(id);
         }
-        conceptoRepository.deleteById(id);
+        conceptRepository.deleteById(id);
     }
 
     public List<ConceptDTO> findConceptsByBudget(Long id){
-        List<Concept> listado = conceptoRepository.findsConceptsByBudgetId(id);
-        return  conceptoMapper.toDTO(listado);
+        List<Concept> listado = conceptRepository.findsConceptsByBudgetId(id);
+        return  conceptMapper.toDTO(listado);
     }
 }

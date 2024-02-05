@@ -18,16 +18,14 @@ import java.util.Optional;
 public class ActivityService {
 
     private ActivityRepository activityRepository;
-
-    @Autowired
-    public ActivityService(ActivityRepository activityRepository){
-        this.activityRepository = activityRepository;
-    }
-
     private ActivityMapper activityMapper;
 
+
+    //  Error creating bean with name 'activityController' - Al tener un constructor por inyección.
+    //  Se corrige unificado todos en un mismo constructor.
     @Autowired
-    public ActivityService(ActivityMapper activityMapper){
+    public ActivityService(ActivityRepository activityRepository, ActivityMapper activityMapper) {
+        this.activityRepository = activityRepository;
         this.activityMapper = activityMapper;
     }
 

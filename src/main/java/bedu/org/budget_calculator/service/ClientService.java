@@ -19,16 +19,14 @@ import java.util.Optional;
 public class ClientService {
 
     private ClientRepository repository;
-
-    @Autowired
-    public ClientService(ClientRepository repository) {
-        this.repository = repository;
-    }
-
     private ClientMapper mapper;
 
+
+    //  Error creating bean with name 'activityController' - Al tener un constructor por inyección.
+    //  Se corrige unificado todos en un mismo constructor.
     @Autowired
-    public ClientService(ClientMapper mapper) {
+    public ClientService(ClientRepository repository, ClientMapper mapper) {
+        this.repository = repository;
         this.mapper = mapper;
     }
 

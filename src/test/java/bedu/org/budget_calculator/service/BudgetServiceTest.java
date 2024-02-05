@@ -188,7 +188,7 @@ class BudgetServiceTest {
     void calculatorTotalBudget(){
         // arrange
         Long id = 7485960L;
-        double total = 0;
+        double total = 50000;
 
         Budget fakeBudget = new Budget();
         fakeBudget.setId(id);
@@ -210,16 +210,12 @@ class BudgetServiceTest {
         fakeList.add(fakeConcept3);
 
         // act
-        when(budgetRepository.findById(anyLong())).thenReturn(Optional.of(fakeBudget));
-        when(conceptRepository.findsConceptsByBudgetId(anyLong())).thenReturn(fakeList);
+        when(conceptRepository.sumSubtotalByBudgetId(anyLong())).thenReturn(total);
 
-        List<ConceptDTO> listConcepts = conceptMapper.toDTO(conceptRepository.findsConceptsByBudgetId(id));
-        for (ConceptDTO l1:listConcepts   ) {
-            total+= l1.getSubtotal();
-        }
-        assertNotNull(listConcepts);
-        assertTrue(total>=0);
-        assertEquals(20000,total);
+        double totalTest = budgetService.calculatorTotalBudget(id);
+
+        assertTrue(totalTest>=0);
+        assertEquals(total,totalTest);
 
     }
 }
