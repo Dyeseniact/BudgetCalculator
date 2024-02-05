@@ -18,11 +18,19 @@ import java.util.Optional;
 @Service
 public class ClientService {
 
-    @Autowired
     private ClientRepository repository;
 
     @Autowired
+    public ClientService(ClientRepository repository) {
+        this.repository = repository;
+    }
+
     private ClientMapper mapper;
+
+    @Autowired
+    public ClientService(ClientMapper mapper) {
+        this.mapper = mapper;
+    }
 
     public List<ClientDTO> findAll() {
         List<Client> data = repository.findAll();
@@ -59,8 +67,12 @@ public class ClientService {
     }
 
     public void deleteById(Long id) throws ClientNotFoundException {
-        Client existingClient = repository.findById(id)
-                .orElseThrow(() -> new ClientNotFoundException(id));
+        Optional<Client> result = repository.findById(id);
+
+        if(!result.isPresent()){
+            throw new ClientNotFoundException(id);
+        }
+
         repository.deleteById(id);
     }
 }

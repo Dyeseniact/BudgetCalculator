@@ -17,11 +17,19 @@ import java.util.Optional;
 @Service
 public class MaterialService {
 
-    @Autowired
     private MaterialRepository materialRepository;
 
     @Autowired
+    public MaterialService(MaterialRepository materialRepository) {
+        this.materialRepository = materialRepository;
+    }
+
     private MaterialMapper materialMapper;
+
+    @Autowired
+    public MaterialService(MaterialMapper materialMapper){
+        this.materialMapper = materialMapper;
+    }
 
     public List<MaterialDTO> findAll() {
         List<Material> data = materialRepository.findAll();
@@ -57,8 +65,11 @@ public class MaterialService {
     }
 
     public void deleteById(Long id) throws MaterialNotFoundException {
-        Material material = materialRepository.findById(id)
-                .orElseThrow(() -> new MaterialNotFoundException(id));
+        Optional<Material> result = materialRepository.findById(id);
+
+        if(!result.isPresent()){
+            throw new MaterialNotFoundException(id);
+        }
 
         materialRepository.deleteById(id);
     }

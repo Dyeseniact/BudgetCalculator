@@ -7,7 +7,7 @@ import java.util.Collections;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-public class RuntimeExceptionTest {
+class RuntimeExceptionTest {
     @Test
     @DisplayName("Should create RuntimeException with details")
     void createRuntimeException() {

@@ -17,12 +17,19 @@ import java.util.Optional;
 
 @Service
 public class ConceptService {
-    @Autowired
+
     private ConceptMapper conceptoMapper;
+
     @Autowired
+    public ConceptService(ConceptMapper conceptoMapper) {
+        this.conceptoMapper = conceptoMapper;
+    }
+
     private ConceptRepository conceptoRepository;
 
-    public ConceptService() {
+    @Autowired
+    public ConceptService(ConceptRepository conceptoRepository) {
+        this.conceptoRepository = conceptoRepository;
     }
 
     public List<ConceptDTO> findAll(){

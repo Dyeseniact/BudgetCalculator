@@ -74,6 +74,5 @@ public class ActivityService {
         }
 
         activityRepository.deleteById(id);
-
     }
 }

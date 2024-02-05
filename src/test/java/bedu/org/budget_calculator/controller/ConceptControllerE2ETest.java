@@ -2,9 +2,6 @@ package bedu.org.budget_calculator.controller;
 
 
 import bedu.org.budget_calculator.dto.concept.ConceptDTO;
-import bedu.org.budget_calculator.repository.BudgetRepository;
-import bedu.org.budget_calculator.repository.ConceptRepository;
-
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 
@@ -31,16 +28,10 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @AutoConfigureMockMvc
 @ExtendWith(SpringExtension.class)
 @SpringBootTest
-public class ConceptControllerE2ETest {
+class ConceptControllerE2ETest {
 
     @Autowired
     private MockMvc mockMvc;
-
-    @Autowired
-    private ConceptRepository repository;
-
-    @Autowired
-    private BudgetRepository budgetRepository;
 
     private ObjectMapper objectMapper = new ObjectMapper().registerModule(new JavaTimeModule());
 
@@ -64,7 +55,7 @@ public class ConceptControllerE2ETest {
     @Test
     @DisplayName("POST /concept should return an error if description is missing")
     void nameMissingInRequestBodyTest() throws Exception {
-        MvcResult result = mockMvc.perform(post("/concepts").contentType("application/json").content("{\"unitprice\":\"500\", \"subtotal\" :\"2000\"}"))
+        mockMvc.perform(post("/concepts").contentType("application/json").content("{\"unitprice\":\"500\", \"subtotal\" :\"2000\"}"))
                 .andExpect(status().isBadRequest())
                 .andReturn();
     }

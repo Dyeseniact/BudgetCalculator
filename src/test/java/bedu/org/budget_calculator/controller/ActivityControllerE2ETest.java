@@ -26,7 +26,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @AutoConfigureMockMvc
 @ExtendWith(SpringExtension.class)
 @SpringBootTest
-public class ActivityControllerE2ETest {
+class ActivityControllerE2ETest {
 
     @Autowired
     private MockMvc mockMvc;
@@ -53,7 +53,7 @@ public class ActivityControllerE2ETest {
     @Test
     @DisplayName("POST /activity should return an error if name is missing")
     void nameMissingInRequestBodyTest() throws Exception {
-        MvcResult result = mockMvc.perform(post("/activity").contentType("application/json").content("{\"unit\":\"Test unit\"}"))
+        mockMvc.perform(post("/activity").contentType("application/json").content("{\"unit\":\"Test unit\"}"))
                 .andExpect(status().isBadRequest())
                 .andReturn();
     }
@@ -61,7 +61,7 @@ public class ActivityControllerE2ETest {
     @Test
     @DisplayName("POST /activity should return an error if unit is missing")
     void unitMissingInRequestBodyTest() throws Exception {
-        MvcResult result = mockMvc.perform(post("/activity").contentType("application/json").content("{\"name\":\"Test name\"}"))
+        mockMvc.perform(post("/activity").contentType("application/json").content("{\"name\":\"Test name\"}"))
                 .andExpect(status().isBadRequest())
                 .andReturn();
     }
@@ -122,7 +122,7 @@ public class ActivityControllerE2ETest {
     @Test
     @DisplayName("DELETE /activity/{id} should return an error if the activity is not found")
     void deleteActivityNotFoundTest() throws Exception {
-        MvcResult result = mockMvc.perform(delete("/activity/" + 5333333L))
+        mockMvc.perform(delete("/activity/" + 5333333L))
                 .andExpect(status().isNotFound())
                 .andReturn();
     }
