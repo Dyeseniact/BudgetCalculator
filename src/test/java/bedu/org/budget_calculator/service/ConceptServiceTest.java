@@ -28,7 +28,7 @@ import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
 @SpringBootTest
-public class ConceptServiceTest {
+class ConceptServiceTest {
 
     @MockBean
     private ConceptRepository repository;

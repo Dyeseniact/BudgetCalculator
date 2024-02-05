@@ -21,7 +21,7 @@ import java.util.List;
 
 @ExtendWith(MockitoExtension.class)
 @SpringBootTest
-public class MaterialControllerTest {
+class MaterialControllerTest {
 
     @MockBean
     private MaterialService service;

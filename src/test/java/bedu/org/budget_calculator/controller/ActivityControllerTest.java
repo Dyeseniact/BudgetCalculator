@@ -23,7 +23,7 @@ import java.util.List;
 
 @ExtendWith(MockitoExtension.class)
 @SpringBootTest
-public class ActivityControllerTest {
+class ActivityControllerTest {
 
     @MockBean
     private ActivityService service;

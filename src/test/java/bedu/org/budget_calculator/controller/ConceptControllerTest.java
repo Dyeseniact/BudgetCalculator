@@ -1,10 +1,8 @@
 package bedu.org.budget_calculator.controller;
 
-import bedu.org.budget_calculator.dto.client.ClientDTO;
 import bedu.org.budget_calculator.dto.concept.ConceptDTO;
 import bedu.org.budget_calculator.dto.concept.CreateConceptDTO;
 import bedu.org.budget_calculator.dto.concept.UpdateConceptDTO;
-import bedu.org.budget_calculator.exception.client.ClientNotFoundException;
 import bedu.org.budget_calculator.exception.concept.ConceptNotFoundException;
 import bedu.org.budget_calculator.service.ConceptService;
 import org.junit.jupiter.api.DisplayName;
@@ -16,7 +14,6 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 
 import java.time.LocalDate;
-import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Optional;
@@ -27,7 +24,7 @@ import static org.mockito.Mockito.*;
 
 @SpringBootTest
 @ExtendWith(MockitoExtension.class)
-public class ConceptControllerTest {
+class ConceptControllerTest {
 
     @MockBean
     private ConceptService service;
