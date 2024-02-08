@@ -47,9 +47,6 @@ public class ActivityController {
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     public ActivityDTO save(@Valid @RequestBody CreateActivityDTO data) throws ValidationException {
-        if (data.getName() == null || data.getUnit() == null) {
-            throw new ValidationException("Name and unit are required");
-        }
 
         return activityService.save(data);
     }

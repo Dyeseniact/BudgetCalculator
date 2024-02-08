@@ -105,16 +105,6 @@ class ActivityControllerTest {
     }
 
     @Test
-    @DisplayName("Controller should throw ValidationException if name or unit are null when saving")
-    void saveValidationExceptionTest() {
-        CreateActivityDTO data = new CreateActivityDTO();
-
-        assertThrows(ValidationException.class, () -> {
-            controller.save(data);
-        });
-    }
-
-    @Test
     @DisplayName("Controller should update an existing activity")
     void updateTest() throws ActivityNotFoundException, ValidationException {
         UpdateActivityDTO data = new UpdateActivityDTO();

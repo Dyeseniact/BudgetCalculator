@@ -4,6 +4,7 @@ on:
     branches: [ "main" ]
   pull_request:
     branches: [ "main" ]
+  
 
 jobs:
   build-budgetCalculator:
@@ -24,4 +25,7 @@ jobs:
 
       - name: compile the project
         run: gradle build
+      
+      - name: Run tests
+        run: gradle test  # Ejecutar las pruebas
 
