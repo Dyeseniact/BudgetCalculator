@@ -1,14 +1,16 @@
 package bedu.org.budget_calculator.exception;
 
 import lombok.Getter;
+import lombok.Setter;
 
 @Getter
-public abstract class BaseException extends java.lang.RuntimeException {
+@Setter
+public class RuntimeException extends Exception{
 
     private final String code;
     private final transient Object details;
 
-    protected BaseException(String code, String message, Object details) {
+    public RuntimeException(String code, String message, Object details) {
         super(message);
         this.code = code;
         this.details = details;
