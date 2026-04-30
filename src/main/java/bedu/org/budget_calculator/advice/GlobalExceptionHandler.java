@@ -1,10 +1,8 @@
 package bedu.org.budget_calculator.advice;
 
-import bedu.org.budget_calculator.exception.activity.ActivityNotFoundException;
-import bedu.org.budget_calculator.exception.budget.BudgetNotFoundException;
-import bedu.org.budget_calculator.exception.client.ClientNotFoundException;
-import bedu.org.budget_calculator.exception.material.MaterialNotFoundException;
-
+import bedu.org.budget_calculator.dto.ErrorDTO;
+import bedu.org.budget_calculator.exception.BaseException;
+import bedu.org.budget_calculator.exception.ResourceNotFoundException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.validation.FieldError;
@@ -12,10 +10,6 @@ import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
-
-import bedu.org.budget_calculator.dto.ErrorDTO;
-import bedu.org.budget_calculator.exception.RuntimeException;
-
 
 import java.util.List;
 
@@ -25,46 +19,35 @@ public class GlobalExceptionHandler {
 
     @ExceptionHandler(MethodArgumentNotValidException.class)
     @ResponseStatus(HttpStatus.BAD_REQUEST)
-    public ErrorDTO validationError(MethodArgumentNotValidException ex) {
+    public ErrorDTO handleValidation(MethodArgumentNotValidException ex) {
         List<FieldError> fieldErrors = ex.getBindingResult().getFieldErrors();
-        List<String> errors = fieldErrors.stream().map(x -> x.getDefaultMessage()).toList();
-        return new ErrorDTO("ERR_VALID", "A error ocurred procesando input data", errors);
+        List<ValidationErrorDetail> errors = fieldErrors.stream()
+                .map(f -> new ValidationErrorDetail(f.getField(), f.getDefaultMessage()))
+                .toList();
+        return new ErrorDTO("ERR_VALIDATION", "Invalid input data", errors);
     }
 
-    @ExceptionHandler(RuntimeException.class)
+    @ExceptionHandler(ResourceNotFoundException.class)
+    @ResponseStatus(HttpStatus.NOT_FOUND)
+    public ErrorDTO handleNotFound(ResourceNotFoundException ex) {
+        return new ErrorDTO(ex.getCode(), ex.getMessage(), ex.getDetails());
+    }
+
+    @ExceptionHandler(BaseException.class)
     @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
-    public ErrorDTO applicationError(RuntimeException ex) {
+    public ErrorDTO handleApplicationError(BaseException ex) {
         return new ErrorDTO(ex.getCode(), ex.getMessage(), ex.getDetails());
     }
 
     @ExceptionHandler(Exception.class)
     @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
-    public ErrorDTO unknownError(Exception ex) {
-        log.error(ex.getMessage());
-        return new ErrorDTO("ERR_UNKNOWN", "An unknown error ocurred", null);
+    public ErrorDTO handleUnknownError(Exception ex) {
+        log.error("Unhandled exception occurred", ex);
+        return new ErrorDTO("ERR_UNKNOWN", "An unexpected error occurred", null);
     }
 
-    @ExceptionHandler(MaterialNotFoundException.class)
-    @ResponseStatus(HttpStatus.NOT_FOUND)
-    public ErrorDTO materialNotFound(MaterialNotFoundException ex) {
-        return new ErrorDTO(ex.getCode(), ex.getMessage(), ex.getDetails());
-    }
-    
-    @ExceptionHandler(BudgetNotFoundException.class)
-    @ResponseStatus(HttpStatus.NOT_FOUND)
-    public ErrorDTO budgetNotFound(BudgetNotFoundException ex) {
-        return new ErrorDTO(ex.getCode(), ex.getMessage(), ex.getDetails());
-    }
-
-    @ExceptionHandler(ActivityNotFoundException.class)
-    @ResponseStatus(HttpStatus.NOT_FOUND)
-    public ErrorDTO activityNotFound(ActivityNotFoundException ex) {
-        return new ErrorDTO(ex.getCode(), ex.getMessage(), ex.getDetails());
-    }
-
-    @ExceptionHandler(ClientNotFoundException.class)
-    @ResponseStatus(HttpStatus.NOT_FOUND)
-    public ErrorDTO clientNotFound(ClientNotFoundException ex) {
-        return new ErrorDTO(ex.getCode(), ex.getMessage(), ex.getDetails());
-    }
+    /**
+     * Inner record to provide structured validation errors
+     */
+    public record ValidationErrorDetail(String field, String message) {}
 }
