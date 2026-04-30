@@ -1,9 +1,10 @@
 package bedu.org.budget_calculator.exception.budget;
 
-import bedu.org.budget_calculator.exception.RuntimeException;
+import bedu.org.budget_calculator.exception.ResourceNotFoundException;
 
-public class BudgetNotFoundException extends RuntimeException {
+public class BudgetNotFoundException extends ResourceNotFoundException {
     public BudgetNotFoundException(Long id) {
-        super("ERR_BUDGET_NOT_FOUND", "No se encontró el presupuesto.", id);
+        super("Budget", id);
     }
 }
+

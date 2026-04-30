@@ -1,9 +1,10 @@
 package bedu.org.budget_calculator.exception.concept;
 
-import bedu.org.budget_calculator.exception.RuntimeException;
+import bedu.org.budget_calculator.exception.ResourceNotFoundException;
 
-public class ConceptNotFoundException extends RuntimeException {
+public class ConceptNotFoundException extends ResourceNotFoundException {
     public ConceptNotFoundException(Long id){
-        super("ERR_DATA_NOT_FOUND","No se encontró el concepto especificado",id);
+        super("Concept", id);
     }
 }
+

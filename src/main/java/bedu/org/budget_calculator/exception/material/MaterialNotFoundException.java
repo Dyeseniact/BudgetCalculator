@@ -1,9 +1,9 @@
 package bedu.org.budget_calculator.exception.material;
 
-import bedu.org.budget_calculator.exception.RuntimeException;
+import bedu.org.budget_calculator.exception.ResourceNotFoundException;
 
-public class MaterialNotFoundException extends RuntimeException {
+public class MaterialNotFoundException extends ResourceNotFoundException {
     public MaterialNotFoundException(long materialId) {
-        super("ERR_DATA_NOT_FOUND","Material not found with ID:",materialId);
+        super("Material", materialId);
     }
 }
